@@ -194,7 +194,7 @@ if (Meteor.is_client) {
             }
             Session.set("selected_person", p);
         },
-        'keypress input': function(e) {
+        'keydown input': function(e) {
             var code = e.which || e.keyCode;
 
             if (code == 13) {
@@ -235,9 +235,23 @@ if (Meteor.is_client) {
             keyboard: false,
             show : false
         });
-        window.addEventListener('keypress',  function(e) {
+        window.addEventListener('keypress', function(e) {
             var focus = $(':focus').length;
             var code = e.which || e.keyCode;
+            if (!focus && code == 99 ) {
+                $('#new_note').focus();
+                e.preventDefault();
+            } else if (!focus && code == 97 ) {
+                $('#person_name').focus();
+                e.preventDefault();
+            }
+            
+        });
+
+        window.addEventListener('keydown',  function(e) {
+            var focus = $(':focus').length;
+            var code = e.which || e.keyCode;
+            //console.log(e);
             if (e.metaKey) {
                 // down: 40, up: 38, 13: enter
                 if ( code == 13 ) { // cmd-enter
@@ -263,10 +277,6 @@ if (Meteor.is_client) {
                         if (first) first.click();
                     }
                 }
-            } else if (!focus && code == 99 ) {
-                $('#new_note').focus();
-            } else if (!focus && code == 97 ) {
-                $('#person_name').focus();
             } else if ( !focus ) {
                 console.log("code: " + code);
             }
