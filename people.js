@@ -110,6 +110,9 @@ if (Meteor.is_client) {
             {
                 '$set': {'actions.$.done': new Date()}
             });
+        },
+        'click .action .trash': function() {
+            People.update(Session.get("selected_person"), {$pull: {actions: this}});
         }
     };
     Template.person_note.events = {
@@ -129,16 +132,21 @@ if (Meteor.is_client) {
             }
             var n = parseNote(t);
             var note = n.note;
-                note.date = this.date;
-            People.update({
-                '_id': Session.get("selected_person"),
-                'notes': this
-            },
-            {
-                '$set': {'notes.$': note},
-                '$pushAll': {'actions': n.actions}
+            note.date = this.date;
+            var q = {};
+            if (!note.text.match(/^\s*$/)) {
+                q['$set'] = {'notes.$': note};
             }
-            );
+            if (n.actions) {
+                q['$pushAll'] = {actions: n.actions};
+            }
+            if(q) {
+                People.update({
+                    '_id': Session.get("selected_person"),
+                    'notes': this
+                }, q
+                );
+            }
 
         }
     };

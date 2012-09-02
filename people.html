@@ -84,7 +84,11 @@
 {{/unless}}
 </dt>
 <dd class="action pri-{{pri}} {{#if done}}completed{{/if}}">
-<p><span class="text">{{text}}</span>{{#if done}} <span class="muted">at {{formatdate done}}</span>{{/if}}</p>
+<p>
+<span class="text">{{text}}</span>
+{{#if done}} <span class="muted">at {{formatdate done}}</span>{{/if}}
+<a class="toolbox inline btn btn-mini trash"><i class="icon-trash"></i></a>
+</p>
 </dd>
 </template>
 <template name="selectedperson">
