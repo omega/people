@@ -1,0 +1,83 @@
+@import "bootstrap.less";
+@import "keys.css";
+
+body {
+  /* Offset the container below the topbar */
+  padding-top: 60px;
+}
+
+
+.toolbox {
+    display: none;
+}
+:hover > .toolbox {
+    display: block;
+}
+
+
+/* fixes */
+
+.navbar .input-append .btn {
+    margin-top: 0;
+}
+h1 .btn-toolbar {
+    margin-top: 0;
+}
+
+/*  custom styles */
+
+.people {
+    box-shadow: 0px 1px 4px rgba(0,0,0,0.067);
+    border-radius: 6px;
+    li {
+        a {
+            padding: 8px 14px;
+            border-left: 1px solid rgba(229,229,229,1);
+            border-right: 1px solid rgba(229,229,229,1);
+        }
+        .icon-chevron-right {
+            margin-top: 2px;
+            margin-right: -6px;
+        }
+    }
+    .active a {
+        border: 0px none;
+    }
+    li:first-child > a {
+        border-top-left-radius: 6px;
+        border-top-right-radius: 6px;
+    }
+    li:last-child a {
+        border-bottom-left-radius: 6px;
+        border-bottom-right-radius: 6px;
+    }
+}
+.actions dd {
+    min-height: 40px;
+    &.action.pri-1 {
+    }
+    &.action.completed .text {
+        text-decoration: line-through;
+    }
+}
+.labels {
+    .label {
+        margin-right: 3px;
+        margin-bottom: 2px;
+    }
+}
+.footer {
+    p {
+        margin-top: 8px;
+        text-align: center;
+    }
+    .light-keys {
+        span {
+            padding-right: 10px;
+            &:last-child {
+                padding-right: 0;
+            }
+        }
+    }
+}
+
