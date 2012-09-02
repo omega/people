@@ -44,17 +44,8 @@ if (Meteor.is_client) {
         return {note: note, actions: actions};
     };
     Handlebars.registerHelper('formatdate', function(object) {
-        var date = new Date(object);
-        var now = new Date();
-        var string = date.toLocaleDateString();
-        if (date.toDateString() == now.toDateString()) {
-            string = date.toLocaleFormat("Today at %R");
-        } else if (date.getFullYear == now.getFullYear) {
-            string = date.toLocaleFormat("%a %b %e %R");
-        } else {
-            string = date.toLocaleFormat("%Y %b %e %R");
-        }
-        return new Handlebars.SafeString(string);
+        var date = moment(new Date(object));
+        return new Handlebars.SafeString(date.fromNow());
     });
 
     //Meteor.subscribe("people");
