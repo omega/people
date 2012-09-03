@@ -55,12 +55,31 @@ h1 .btn-toolbar {
         border-bottom-right-radius: 6px;
     }
 }
-.actions dd {
-    min-height: 40px;
-    &.action.pri-1 {
+.actions {
+    dd {
+        min-height: 40px;
+        &.action.pri-1 {
+        }
+        &.action.completed .text {
+            text-decoration: line-through;
+        }
     }
-    &.action.completed .text {
-        text-decoration: line-through;
+    dt {
+        &.action.pri-1 {
+            .btn {
+                .btn-success;
+            }
+        }
+        &.action.pri-2 {
+            .btn {
+                .btn-warning;
+            }
+        }
+        &.action.pri-3 {
+            .btn {
+                .btn-error;
+            }
+        }
     }
 }
 .labels {
