@@ -267,6 +267,7 @@ if (Meteor.is_client) {
                         var last = $('.people .person:last-child a').get(0);
                         if (last) last.click();
                     }
+                    e.preventDefault();
                 } else if ( !focus && code == 40 ) { // cmd-down
                     var active = $('.people .active');
                     var next = active.next('.person');
@@ -276,6 +277,7 @@ if (Meteor.is_client) {
                         var first = $('.people .person').get(0);
                         if (first) first.click();
                     }
+                    e.preventDefault();
                 }
             } else if ( !focus ) {
                 console.log("code: " + code);
