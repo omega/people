@@ -245,7 +245,7 @@ if (Meteor.is_client) {
                 $('#person_name').focus();
                 e.preventDefault();
             }
-            
+
         });
 
         window.addEventListener('keydown',  function(e) {
