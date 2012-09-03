@@ -15,7 +15,7 @@ if (Meteor.is_client) {
             text = text.replace(actions_re, function(match, p1, p2) {
                 actions.push({
                     text: p2.trim(),
-                    pri: p1.length
+                    pri: p1.length > 3 ? 3 : p1.length
                 });
                 return "";
             });
