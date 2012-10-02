@@ -25,11 +25,7 @@
         </div>
         {{else}}
         <div class="span12">
-            <div class="hero-unit">
-                <h1>Not logged in</h1>
-                <p>You need to log in to use this service</p>
-                {{>loginform}}
-            </div>
+            {{>welcome}}
         </div>
         {{/if}}
     </div>
@@ -44,6 +40,7 @@
             </div>
         </div>
     </div>
+    {{> modals}}
 </body>
 
 <template name="people">

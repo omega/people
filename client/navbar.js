@@ -60,12 +60,6 @@ Template.navbar.events = {
     'click .group': function() {
         Session.set("selected_group", this._id);
         Session.set("selected_person");
-    },
-    'click .login-toggle': function(e) {
-        window.setTimeout(function() {
-            console.log("attempting to focus username");
-            $('.nav input[name="username"]').focus();
-        }, 300);
     }
 };
 
