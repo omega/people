@@ -9,14 +9,22 @@ if (Meteor.is_client) {
         return new Handlebars.SafeString(date.fromNow());
     });
 
-    //Meteor.subscribe("people");
+    Meteor.subscribe("people");
+    Meteor.subscribe("groups");
 
     Template.people.people = function() {
         var group = Groups.findOne(Session.get("selected_group"));
+        var q;
         if (group) {
-            group = group.name;
+            q = {
+                group: group.name
+            };
+        } else {
+            q = {
+                group: { $in: [ null, undefined ] }
+            };
         }
-        return People.find({group: group}, {sort: {name: 1}});
+        return People.find(q, {sort: {name: 1}});
     };
 
     Template.selectedperson.selected_person = function() {
@@ -126,76 +134,8 @@ if (Meteor.is_client) {
         return Session.equals("selected_group", this._id) ? "active": '';
     };
 
-    Template.navbar.group_count = function() {
-        return Groups.find().count();
-    };
-    Template.navbar.selected_group = function() {
-        var group = Groups.findOne(Session.get("selected_group"));
-        if (group) return group.name;
-        return;
-    };
-    Template.navbar.events = {
-        'click #add_button': function() {
-            var name = document.getElementById('person_name').value;
-            // XXX: Should probably display something here :P
-            if (name.match(/^\s*$/)) return;
-            // check if name exists
-            var p = People.findOne({key: name.toLowerCase()});
-            var g;
-            if (p) {
-                g = Groups.findOne({name: p.group});
-                p = p._id;
-                Session.set("selected_group", g._id);
-            } else {
-                g = Groups.findOne(Session.get("selected_group"));
-                if (g) {
-                    g = g.name;
-                }
-                p = People.insert({name: name, group: g, key: name.toLowerCase()});
-            }
-            Session.set("selected_person", p);
-        },
-        'keydown input': function(e) {
-            var code = e.which || e.keyCode;
-
-            if (code == 13) {
-                $(e.target).siblings('button').click();
-                e.target.value = '';
-            } else if ( code == 27 ) {
-                e.target.value = '';
-                e.target.blur();
-            }
-        },
-        'click #addgroupbtn': function() {
-            var n = $('#groupname').val();
-            // XXX: Should probably display something here :P
-            if (n.match(/^\s*$/)) { return; }
-
-            var g = Groups.findOne({name: n});
-            if (g) {
-                g = g._id;
-            } else {
-                g = Groups.insert({name: n});
-            }
-            Session.set("selected_group", g);
-            Session.set("selected_player");
-        },
-        'click .none': function() {
-            // clear out selected_group
-            Session.set('selected_group');
-            Session.set("selected_person");
-        },
-        'click .group': function() {
-            Session.set("selected_group", this._id);
-            Session.set("selected_person");
-        }
-    };
 
     Meteor.startup(function() {
-        $('#addGroup').modal({
-            keyboard: false,
-            show : false
-        });
         window.addEventListener('keypress', function(e) {
             var focus = $(':focus').length;
             var code = e.which || e.keyCode;
@@ -245,14 +185,4 @@ if (Meteor.is_client) {
             }
         });
     });
-}
-
-if (Meteor.is_server) {
-    Meteor.startup(function () {
-        // code to run on server at startup
-    });
-
-    //Meteor.publish("people", function() {
-        //return People.find({});
-    //});
 }

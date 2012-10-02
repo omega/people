@@ -13,6 +13,7 @@
     </div>
     <div class="container">
         <div class="row">
+            {{#if currentUser}}
             <div class="span3">
                 <ul class="nav nav-list people">
                     {{> people}}
@@ -22,6 +23,15 @@
                 {{>selectedperson}}
             </div>
         </div>
+        {{else}}
+        <div class="span12">
+            <div class="hero-unit">
+                <h1>Not logged in</h1>
+                <p>You need to log in to use this service</p>
+                {{>loginform}}
+            </div>
+        </div>
+        {{/if}}
     </div>
     <div class="navbar navbar-fixed-bottom footer">
         <div class="navbar-inner">
@@ -136,42 +146,6 @@
     </div>
 </form>
 {{/if}}
-</template>
-<template name="navbar">
-<a class="brand" href="#">People</a>
-
-{{#if group_count}}
-<ul class="nav">
-    <li class="dropdown">
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-        {{#if selected_group}}
-        {{selected_group}}
-        {{else}}
-        People
-        {{/if}}
-        <b class="caret"></b>
-    </a>
-    <ul class="dropdown-menu">
-        {{>groups}}
-        <li class="divider"></li>
-        <li><a href="#" class="none">No group</a></li>
-
-    </ul>
-    </li>
-</ul>
-{{/if}}
-<form class="navbar-form pull-right span4">
-    <div class="input-append">
-        <input id="person_name" type="text" placeholder="Find or create person"/>
-        <button id="add_button" class="btn" type="button"><i class="icon-user"></i></button>
-    </div>
-</form>
-<form class="navbar-form pull-right span4">
-    <div class="input-append">
-        <input type="text" id="groupname" placeholder="New group">
-        <button type="button" id="addgroupbtn" class="btn"><i class="icon-plus"></i></button>
-    </div>
-</form>
 </template>
 <template name="groups">
 {{#each groups}}

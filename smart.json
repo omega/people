@@ -1,4 +1,7 @@
 {
+  "meteor": {
+    "branch": "auth"
+  },
   "packages": {
     "bootstrap.less": {},
     "moment": {}
