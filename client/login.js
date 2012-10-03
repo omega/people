@@ -40,24 +40,28 @@ Template.loginform.events = {
         console.log("keyup on ", e.target);
         var i = $(e.target);
         var v = i.val();
-        window.setTimeout(function() {
-            if (i.val() == v) {
-                console.log("checking username, been same for a while");
-                // value is still the same
-                Meteor.call("user_exists", v, function(err, count) {
-                    console.log("result from user_exists: ", count);
-                    if (count) {
-                        $('.btn.login').show();
-                        $('.btn.adduser').hide();
-                    } else {
-                        $('.btn.adduser').show();
-                        $('.btn.login').hide();
-                    }
-                    $('span.or').hide();
-                    $('.btn.adduser').addClass('btn-primary');
-                });
-            }
-        }, 200);
+        if (v) {
+            window.setTimeout(function() {
+                if (i.val() == v) {
+                    console.log("checking username, been same for a while");
+                    // value is still the same
+                    Meteor.call("user_exists", v, function(err, count) {
+                        console.log("result from user_exists: ", count);
+                        if (count) {
+                            $('.btn.login').prop('disabled', false).addClass('btn-primary');
+                            $('.btn.adduser').prop('disabled', true).removeClass('btn-primary');
+                        } else {
+                            $('.btn.adduser').prop('disabled', false).addClass('btn-primary');
+                            $('.btn.login').prop('disabled', true).removeClass('btn-primary');
+
+                        }
+                    });
+                }
+            }, 200);
+        } else {
+            $('.btn.adduser').prop('disabled', false).removeClass('btn-primary');
+            $('.btn.login').prop('disabled', false).addClass('btn-primary');
+        }
     },
     'focus input': function(e) {
         removeError($(e.target));
