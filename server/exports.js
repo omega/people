@@ -58,6 +58,10 @@ Meteor.methods({
             owner: this.userId()
         });
         return id;
+    },
+    user_exists: function(name) {
+        console.log("checking if user exists", name);
+        return Meteor.users.find({username: name}).count();
     }
 });
 

@@ -1,22 +1,3 @@
-
-Template.loginform.events = {
-    'click .login': function(e) {
-        console.log("logging in");
-        var u = $(e.target).siblings('input[type="text"]').val();
-        var p = $(e.target).siblings('input[type="password"]').val();
-        Meteor.loginWithPassword(u, p, function(err) {
-            if (err) {
-                // XXX: Should handle errors in a global way..
-                console.log("error logging in");
-            }
-        });
-    }
-};
-Template.loggedInUser.events = {
-    'click .logout': function(e) {
-        Meteor.logout();
-    }
-};
 function addError(input, error) {
     input.parent().addClass("error");
     input.tooltip({
@@ -25,11 +6,61 @@ function addError(input, error) {
         title: error
     }).tooltip('show');
 }
+function removeError(input) {
+    input.tooltip('destroy');
+    input.parent().removeClass('error');
+}
 
+
+Template.loggedInUser.events = {
+    'click .logout': function(e) {
+        Meteor.logout();
+    }
+};
+var userexiststimer;
 Template.loginform.events = {
+    'click .login': function(e) {
+        console.log("logging in");
+        var u = $(e.target).parent().find('input[type="text"]');
+        var p = $(e.target).parent().find('input[type="password"]');
+        Meteor.loginWithPassword(u.val(), p.val(), function(err) {
+            if (err) {
+                if (err.reason.match(/user/i)) {
+                    addError(u, err.reason);
+                } else if (err.reason.match(/password/i)) {
+                    addError(p, err.reason);
+                }
+                console.error(err);
+            } else {
+                console.log("error logging in");
+            }
+        });
+    },
+    'keyup input[name="username"]': function(e) {
+        console.log("keyup on ", e.target);
+        var i = $(e.target);
+        var v = i.val();
+        window.setTimeout(function() {
+            if (i.val() == v) {
+                console.log("checking username, been same for a while");
+                // value is still the same
+                Meteor.call("user_exists", v, function(err, count) {
+                    console.log("result from user_exists: ", count);
+                    if (count) {
+                        $('.btn.login').show();
+                        $('.btn.adduser').hide();
+                    } else {
+                        $('.btn.adduser').show();
+                        $('.btn.login').hide();
+                    }
+                    $('span.or').hide();
+                    $('.btn.adduser').addClass('btn-primary');
+                });
+            }
+        }, 200);
+    },
     'focus input': function(e) {
-        $(e.target).tooltip('destroy');
-        $(e.target).parent().removeClass('error');
+        removeError($(e.target));
     },
     'click .adduser': function(e) {
         var u = $(e.target).parent().find('input[type="text"]');
@@ -50,9 +81,10 @@ Template.loginform.events = {
                 password: p.val()
             }, {}, function(err) {
                 if (err) {
-                    if (err.error == 403) {
+                    console.error(err);
+                    if (err.reason.match(/exists/i)) {
                         // XXX: This might not be only user exists..
-                        addError(u, "Username already exists");
+                        addError(u, err.reason);
                     }
                 }
             });
