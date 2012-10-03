@@ -17,7 +17,7 @@ Template.loggedInUser.events = {
         Meteor.logout();
     }
 };
-var userexiststimer;
+var UEtimer;
 Template.loginform.events = {
     'click .login': function(e) {
         console.log("logging in");
@@ -37,23 +37,25 @@ Template.loginform.events = {
         });
     },
     'keyup input[name="username"]': function(e) {
-        console.log("keyup on ", e.target);
+        if (typeof(UEtimer) == "number") {
+            window.clearTimeout(UEtimer);
+        }
         var i = $(e.target);
         var v = i.val();
         if (v) {
-            window.setTimeout(function() {
+            UEtimer = window.setTimeout(function() {
                 if (i.val() == v) {
-                    console.log("checking username, been same for a while");
                     // value is still the same
                     Meteor.call("user_exists", v, function(err, count) {
-                        console.log("result from user_exists: ", count);
-                        if (count) {
-                            $('.btn.login').prop('disabled', false).addClass('btn-primary');
-                            $('.btn.adduser').prop('disabled', true).removeClass('btn-primary');
-                        } else {
-                            $('.btn.adduser').prop('disabled', false).addClass('btn-primary');
-                            $('.btn.login').prop('disabled', true).removeClass('btn-primary');
+                        if (i.val() == v) {
+                            if (count) {
+                                $('.btn.login').prop('disabled', false).addClass('btn-primary');
+                                $('.btn.adduser').prop('disabled', true).removeClass('btn-primary');
+                            } else {
+                                $('.btn.adduser').prop('disabled', false).addClass('btn-primary');
+                                $('.btn.login').prop('disabled', true).removeClass('btn-primary');
 
+                            }
                         }
                     });
                 }
