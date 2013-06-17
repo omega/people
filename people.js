@@ -66,15 +66,6 @@ if (Meteor.is_client) {
             Meteor.call("mark_action_as_done", this, Session.get("selected_person"), function(err, stat) {
                 console.log("Back from mark: ", err, stat);
             });
-            /*
-            People.update({
-                '_id': Session.get("selected_person"),
-                'actions': this
-            },
-            {
-                '$set': {'actions.$.done': new Date()}
-            });
-            */
         },
         'click .action .trash': function() {
             People.update(Session.get("selected_person"), {$pull: {actions: this}});
