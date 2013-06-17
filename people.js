@@ -1,6 +1,6 @@
 
-var People = new Meteor.Collection("people");
-var Groups = new Meteor.Collection("groups");
+People = new Meteor.Collection("people");
+Groups = new Meteor.Collection("groups");
 
 
 if (Meteor.is_client) {
@@ -63,6 +63,10 @@ if (Meteor.is_client) {
     };
     Template.person_action.events = {
         'click .action .complete': function() {
+            Meteor.call("mark_action_as_done", this, Session.get("selected_person"), function(err, stat) {
+                console.log("Back from mark: ", err, stat);
+            });
+            /*
             People.update({
                 '_id': Session.get("selected_person"),
                 'actions': this
@@ -70,6 +74,7 @@ if (Meteor.is_client) {
             {
                 '$set': {'actions.$.done': new Date()}
             });
+            */
         },
         'click .action .trash': function() {
             People.update(Session.get("selected_person"), {$pull: {actions: this}});
