@@ -68,7 +68,9 @@ if (Meteor.is_client) {
             });
         },
         'click .action .trash': function() {
-            People.update(Session.get("selected_person"), {$pull: {actions: this}});
+            Meteor.call("action_trash", this, Session.get("selected_person"), function(err, stat) {
+                console.log("Back from trash action", err, stat);
+            });
         }
     };
     Template.person_note.events = {

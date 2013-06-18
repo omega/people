@@ -21,10 +21,15 @@ Meteor.methods
       owner: self.userId
   mark_action_as_done: (actions, person) ->
     console.log "marking ", actions, "as done"
-    People.update({
+    return People.update({
       _id: person
       actions: actions
     }, {
       '$set': {'actions.$.done': new Date()}
     })
+  action_trash: (actions, person) ->
+    console.log "Deleting action ", actions
+    return People.update person, { '$pull': {notes: actions} }
+
+
 
