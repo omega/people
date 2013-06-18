@@ -3,7 +3,7 @@
   "dependencies": {
     "basePackages": {
       "moment": {},
-      "bootstrap-customizable": {}
+      "bootstrap-less": {}
     },
     "packages": {
       "moment": {
@@ -11,10 +11,10 @@
         "tag": "v1.7.0",
         "commit": "c64b6ec0e714b9556f4b6643d430b868ba69d3d7"
       },
-      "bootstrap-customizable": {
-        "git": "https://github.com/tomconnors/meteor-bootstrap-less",
-        "tag": "v0.0.3",
-        "commit": "fed1707912a2ba4189417267274f69f567770e61"
+      "bootstrap-less": {
+        "git": "https://github.com/inhji/meteor-bootstrap-less",
+        "tag": "v0.0.2",
+        "commit": "a04086b7f86f1d3e8f58ab801b37d08c40688693"
       }
     }
   }
