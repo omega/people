@@ -37,7 +37,7 @@ Meteor.methods
 
 # Methods for Notes
 Meteor.methods
-  save_note: (person, input_note, parsed_note) ->
+  note_save: (person, input_note, parsed_note) ->
     console.log "saving note for #{person}", parsed_note
     note = parsed_note.note
     note.date = input_note.date

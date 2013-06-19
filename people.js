@@ -89,8 +89,8 @@ if (Meteor.is_client) {
                 return;
             }
             var n = parseNote(t);
-            Meteor.call('save_note', Session.get("selected_person"), this, n, function(err, stat) {
-                console.log("Back from save_note", err, stat);
+            Meteor.call('note_save', Session.get("selected_person"), this, n, function(err, stat) {
+                console.log("Back from note_save", err, stat);
             });
         }
     };
