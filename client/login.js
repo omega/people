@@ -32,7 +32,7 @@ Template.loginform.events = {
                 }
                 console.error(err);
             } else {
-                console.log("error logging in");
+                console.log("No error logging in", err, Meteor.userId);
             }
         });
     },
