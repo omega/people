@@ -22,12 +22,12 @@
             <div class="span9">
                 {{>selectedperson}}
             </div>
+            {{else}}
+            <div class="span12">
+                {{>welcome}}
+            </div>
+            {{/if}}
         </div>
-        {{else}}
-        <div class="span12">
-            {{>welcome}}
-        </div>
-        {{/if}}
     </div>
     <div class="navbar navbar-fixed-bottom footer">
         <div class="navbar-inner">
