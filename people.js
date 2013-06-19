@@ -47,10 +47,11 @@ if (Meteor.is_client) {
             People.remove({_id: id});
         },
         'click .group': function() {
+            var self = this;
             Meteor.call('person_change_group', Session.get("selected_person"), this.name, function(err, stat) {
                 console.log("Return from person_change_group", err, stat);
                 if (!err) {
-                    Session.set("selected_person");
+                    Session.set("selected_group", self._id);
                 }
             });
         }
