@@ -47,8 +47,12 @@ if (Meteor.is_client) {
             People.remove({_id: id});
         },
         'click .group': function() {
-            People.update(Session.get("selected_person"), {'$set': {group: this.name}});
-            Session.set("selected_person");
+            Meteor.call('person_change_group', Session.get("selected_person"), this.name, function(err, stat) {
+                console.log("Return from person_change_group", err, stat);
+                if (!err) {
+                    Session.set("selected_person");
+                }
+            });
         }
     };
     Template.person_action.events = {

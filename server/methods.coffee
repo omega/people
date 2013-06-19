@@ -19,6 +19,10 @@ Meteor.methods
       group: g
       key: name.toLowerCase()
       owner: self.userId
+  person_change_group: (person, name) ->
+    console.log "Changing group of #{person} to #{name}"
+    return People.update person, $set: group: name
+
 
 # methods for actions
 Meteor.methods
