@@ -30,9 +30,9 @@ Meteor.methods
     }, {
       '$set': {'actions.$.done': new Date()}
     })
-  action_trash: (actions, person) ->
-    console.log "Deleting action ", actions
-    return People.update person, { '$pull': {notes: actions} }
+  action_trash: (person, action) ->
+    console.log "Deleting action ", action
+    return People.update person, '$pull': actions: action
 
 
 # Methods for Notes

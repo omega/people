@@ -68,7 +68,7 @@ if (Meteor.is_client) {
             });
         },
         'click .action .trash': function() {
-            Meteor.call("action_trash", this, Session.get("selected_person"), function(err, stat) {
+            Meteor.call("action_trash", Session.get("selected_person"), this, function(err, stat) {
                 console.log("Back from trash action", err, stat);
             });
         }
