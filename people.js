@@ -43,8 +43,13 @@ if (Meteor.is_client) {
         },
         'click .remove-person': function(e) {
             var id = e.target.getAttribute('data:user');
-
-            People.remove({_id: id});
+            Meteor.call('person_remove', id, function(err, stat) {
+                console.log("return from person_remove", err, stat);
+                if (!err) {
+                    Session.set("selected_group");
+                    Session.set("selected_person");
+                }
+            });
         },
         'click .group': function() {
             var self = this;

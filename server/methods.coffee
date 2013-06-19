@@ -23,6 +23,10 @@ Meteor.methods
     console.log "Changing group of #{person} to #{name}"
     return People.update person, $set: group: name
 
+  person_remove: (person) ->
+    console.log "Removing #{person}"
+    return People.remove _id: person
+
 
 # methods for actions
 Meteor.methods
