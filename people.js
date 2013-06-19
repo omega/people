@@ -37,19 +37,9 @@ if (Meteor.is_client) {
             document.getElementById('new_note').value = '';
             if (txt.match(/^\s*$/)) return;
             var n = parseNote(txt);
-            var note = n.note;
-                note.date = new Date();
-            var q = {};
-            if (!note.text.match(/^\s*$/)) {
-                q['$push'] = {notes: note};
-            }
-            if (n.actions) {
-                q['$pushAll'] = {actions: n.actions};
-            }
-            if(q) {
-                console.log("updating");
-                People.update(Session.get("selected_person"),q);
-            }
+            Meteor.call('note_save', Session.get("selected_person"), null, n, function(err, stat) {
+                console.log("Back from note_save new note", err, stat);
+            });
         },
         'click .remove-person': function(e) {
             var id = e.target.getAttribute('data:user');

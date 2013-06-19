@@ -38,19 +38,29 @@ Meteor.methods
 # Methods for Notes
 Meteor.methods
   note_save: (person, input_note, parsed_note) ->
-    console.log "saving note for #{person}", parsed_note
+    console.log "saving note on #{person}", parsed_note
     note = parsed_note.note
-    note.date = input_note.date
+
     q = {}
+    s = {}
+    if input_note
+      note.date = input_note.date
+      s =
+        _id: person
+        notes: input_note
+    else
+      note.date = new Date()
+      s = person
+
     if not note.text.match /^\s*$/
-      q.$set = 'notes.$': note
+      if input_note
+        q.$set = 'notes.$': note
+      else
+        q.$push = notes: note
     if parsed_note.actions
       q.$pushAll = actions: parsed_note.actions
     if q
-      People.update
-        _id: person
-        notes: input_note
-      , q
+      People.update s, q
 
   note_trash: (person, note) ->
     console.log "deleting note on #{person}", note
