@@ -19,7 +19,8 @@ Template.navbar.events = {
             Session.set("selected_group", g._id);
             Session.set("selected_person", p._id);
         } else {
-            Meteor.call("create_person", name, function(err, id) {
+            Meteor.call("create_person", name, Session.get("selected_group"), function(err, id) {
+                console.log("Back from create_person", err, id);
                 Session.set("selected_user", id);
             });
 

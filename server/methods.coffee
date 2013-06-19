@@ -1,16 +1,16 @@
 Meteor.methods
   create_group: (name) ->
-    if not self.userId
+    if not this.userId
       console.log "Not logged in, not creating anything"
       return
-    return Groups.insert owner: self.userId, name: name
+    return Groups.insert owner: this.userId, name: name
   user_exists: (name) ->
-    return Metor.users.find( username: name ).count()
-  create_person: (name) ->
-    if not self.userId
+    return Meteor.users.find( username: name ).count()
+  create_person: (name, group) ->
+    if not this.userId
       console.log "Not logged in, not creating a new person"
       return
-    g = Groups.findOne Session.get "selected_group"
+    g = Groups.findOne group
     g = g.name if g
 
     console.log "    group", g
@@ -18,7 +18,7 @@ Meteor.methods
       name: name
       group: g
       key: name.toLowerCase()
-      owner: self.userId
+      owner: this.userId
   person_change_group: (person, name) ->
     console.log "Changing group of #{person} to #{name}"
     return People.update person, $set: group: name
