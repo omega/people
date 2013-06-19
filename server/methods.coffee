@@ -19,6 +19,9 @@ Meteor.methods
       group: g
       key: name.toLowerCase()
       owner: self.userId
+
+# methods for actions
+Meteor.methods
   mark_action_as_done: (actions, person) ->
     console.log "marking ", actions, "as done"
     return People.update({
@@ -31,5 +34,22 @@ Meteor.methods
     console.log "Deleting action ", actions
     return People.update person, { '$pull': {notes: actions} }
 
+
+# Methods for Notes
+Meteor.methods
+  save_note: (person, input_note, parsed_note) ->
+    console.log "saving note for #{person}", parsed_note
+    note = parsed_note.note
+    note.date = input_note.date
+    q = {}
+    if not note.text.match /^\s*$/
+      q.$set = 'notes.$': note
+    if parsed_note.actions
+      q.$pushAll = actions: parsed_note.actions
+    if q
+      People.update
+        _id: person
+        notes: input_note
+      , q
 
 

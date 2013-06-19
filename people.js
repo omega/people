@@ -89,23 +89,9 @@ if (Meteor.is_client) {
                 return;
             }
             var n = parseNote(t);
-            var note = n.note;
-            note.date = this.date;
-            var q = {};
-            if (!note.text.match(/^\s*$/)) {
-                q['$set'] = {'notes.$': note};
-            }
-            if (n.actions) {
-                q['$pushAll'] = {actions: n.actions};
-            }
-            if(q) {
-                People.update({
-                    '_id': Session.get("selected_person"),
-                    'notes': this
-                }, q
-                );
-            }
-
+            Meteor.call('save_note', Session.get("selected_person"), this, n, function(err, stat) {
+                console.log("Back from save_note", err, stat);
+            });
         }
     };
 
