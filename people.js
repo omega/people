@@ -75,7 +75,9 @@ if (Meteor.is_client) {
     };
     Template.person_note.events = {
         'click .toolbox .icon-trash': function() {
-            People.update(Session.get("selected_person"), {$pull: {notes: this}});
+            Meteor.call('note_trash', Session.get("selected_person"), this, function(err, stat) {
+                console.log("Back from note_trash", err, stat);
+            });
         },
         'click .toolbox .edit': function(e) {
             $(e.target).closest('dd').find('.form-behind').toggle();

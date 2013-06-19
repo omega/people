@@ -52,4 +52,8 @@ Meteor.methods
         notes: input_note
       , q
 
+  note_trash: (person, note) ->
+    console.log "deleting note on #{person}", note
+    return People.update person, '$pull': notes: note
+
 
