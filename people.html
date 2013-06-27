@@ -44,11 +44,14 @@
     {{> modals}}
 </body>
 
+
 <template name="people">
 {{#each people}}
     {{> person}}
 {{/each}}
 </template>
+
+
 
 <template name="person">
 <li class="person {{selected_class}}">
@@ -61,6 +64,8 @@
 </a>
 </li>
 </template>
+
+
 
 <template name="person_note">
 <dt>
@@ -83,6 +88,8 @@
 </div>
 </dd>
 </template>
+
+
 <template name="person_action">
 <dt class="action pri-{{pri}}">
 {{#unless done}}
@@ -99,6 +106,9 @@
 </p>
 </dd>
 </template>
+
+
+
 <template name="selectedperson">
 {{#if selected_person}}
 <h1>{{selected_person.name}}
@@ -145,6 +155,8 @@
 </form>
 {{/if}}
 </template>
+
+
 <template name="groups">
 {{#each groups}}
     {{> group}}
