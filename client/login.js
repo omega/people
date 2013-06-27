@@ -82,7 +82,7 @@ Template.loginform.events = {
         }
 
         if (errors == 0) {
-            Meteor.createUser({
+            Accounts.createUser({
                 username: u.val(),
                 password: p.val()
             }, {}, function(err) {
