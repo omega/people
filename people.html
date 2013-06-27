@@ -113,6 +113,7 @@
 {{#if selected_person}}
 <h1>{{selected_person.name}}
     <div class="btn-toolbar pull-right clearfix">
+        {{#if group_count}}
         <div class="btn-group">
             <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
                 Change group
@@ -122,6 +123,7 @@
                 {{>groups}}
             </ul>
         </div>
+        {{/if}}
         <button type="button" class="btn btn-danger remove-person" data:user="{{selected_person._id}}">
             <i class="icon-trash"></i>
         </button>
