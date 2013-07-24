@@ -89,7 +89,8 @@ if (Meteor.is_client) {
         },
         'click .save-note': function(e) {
             var t = $(e.target).closest('.form-behind').find('.edit-note').val();
-            if (t == this.text) {
+            console.log(t, this.origText);
+            if (t == this.origText) {
                 $(e.target).closest('dd').find('.form-behind').toggle();
                 $(e.target).closest('dd').find('.form-ahead').toggle();
                 return;

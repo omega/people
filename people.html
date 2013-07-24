@@ -82,14 +82,18 @@
     {{/if}}
 </div>
 <div class="form-ahead">
+<div class="labels">{{#each tags}}<span class="label label-info pull-right">{{this}}</span>{{/each}}</div>
 {{#markdown}}
 {{text}}
 {{/markdown}}
 </div>
-<div class="labels">{{#each tags}}<span class="label label-info pull-right">{{this}}</span>{{/each}}</div>
 <form class="form-behind hide">
-    <textarea name="edit_note" class="span6 edit-note" rows="5">{{origText}}</textarea>
-    <a class="btn save-note cmd-enter"><i class="icon-comment"></i> Save</a>
+    <div>
+        <textarea name="edit_note" class="span6 edit-note" rows="5">{{origText}}</textarea>
+    </div>
+    <div>
+        <a class="btn save-note cmd-enter"><i class="icon-comment"></i> Save</a>
+    </div>
 </div>
 </dd>
 </template>
