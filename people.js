@@ -9,8 +9,8 @@ if (Meteor.is_client) {
         return new Handlebars.SafeString(date.fromNow());
     });
     Handlebars.registerHelper('noteid', function(object) {
-        console.log(object);
-        return new Handlebars.SafeString(object.date.getTime());
+        var d = new Date(object.date);
+        return new Handlebars.SafeString(d.getTime());
     });
 
     Meteor.subscribe("people");
@@ -100,19 +100,23 @@ if (Meteor.is_client) {
             });
         },
         'click .expand': function() {
-            Session.set("i" + this.date.getTime(), 1);
+            var d = new Date(this.date);
+            Session.set("i" + d.getTime(), 1);
         },
         'click .collapser': function() {
-            Session.set("i" + this.date.getTime(), 0);
+            var d = new Date(this.date);
+            Session.set("i" + d.getTime(), 0);
         }
     };
 
 
     Template.person_note.expanded_class = function() {
-        return Session.equals("i" + this.date.getTime(), 1) ? 'expanded' : 'collapsed';
+        var d = new Date(this.date);
+        return Session.equals("i" + d.getTime(), 1) ? 'expanded' : 'collapsed';
     };
     Template.person_note.expanded = function() {
-        return Session.equals("i" + this.date.getTime(), 1);
+        var d = new Date(this.date);
+        return Session.equals("i" + d.getTime(), 1);
     };
 
 
