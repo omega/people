@@ -108,6 +108,23 @@ h1 .btn-toolbar {
     }
 }
 
+.person-note {
+    margin-bottom: 10px
+    position: relative;;
+    .form-ahead {
+        max-height: @baseLineHeight + 5px;
+        overflow: hidden;
+        p:first-child {
+            font-weight: bold;
+        }
+    }
+
+    &.expanded {
+        .form-ahead {
+            max-height: none;
+        }
+    }
+}
 .nav.user {
     .pull-right;
     .dropdown-menu {

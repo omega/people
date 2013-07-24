@@ -71,10 +71,15 @@
 <dt>
 {{formatdate date}}
 </dt>
-<dd class="clearfix" style="margin-bottom: 10px">
+<dd class="clearfix person-note {{expanded_class}}" id="i{{noteid this}}">
 <div class="btn-group pull-right toolbox">
     <a class="btn btn-mini edit"><i class="icon-pencil"></i></a>
     <a class="btn btn-mini btn-danger"><i class="icon-trash"></i></a>
+    {{#if expanded}}
+    <a class="btn btn-mini collapser"><i class="icon-chevron-up"></i></a>
+    {{else}}
+    <a class="btn btn-mini expand"><i class="icon-chevron-down"></i></a>
+    {{/if}}
 </div>
 <div class="form-ahead">
 {{#markdown}}

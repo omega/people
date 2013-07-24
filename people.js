@@ -8,6 +8,10 @@ if (Meteor.is_client) {
         var date = moment(new Date(object));
         return new Handlebars.SafeString(date.fromNow());
     });
+    Handlebars.registerHelper('noteid', function(object) {
+        console.log(object);
+        return new Handlebars.SafeString(object.date.getTime());
+    });
 
     Meteor.subscribe("people");
     Meteor.subscribe("groups");
@@ -94,7 +98,21 @@ if (Meteor.is_client) {
             Meteor.call('note_save', Session.get("selected_person"), this, n, function(err, stat) {
                 console.log("Back from note_save", err, stat);
             });
+        },
+        'click .expand': function() {
+            Session.set("i" + this.date.getTime(), 1);
+        },
+        'click .collapser': function() {
+            Session.set("i" + this.date.getTime(), 0);
         }
+    };
+
+
+    Template.person_note.expanded_class = function() {
+        return Session.equals("i" + this.date.getTime(), 1) ? 'expanded' : 'collapsed';
+    };
+    Template.person_note.expanded = function() {
+        return Session.equals("i" + this.date.getTime(), 1);
     };
 
 

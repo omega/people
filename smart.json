@@ -1,6 +1,6 @@
 {
   "packages": {
     "moment": {},
-    "bootstrap-less": {}
+    "bootstrap-themes": {},
   }
 }
