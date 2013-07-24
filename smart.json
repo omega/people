@@ -2,5 +2,6 @@
   "packages": {
     "moment": {},
     "bootstrap-themes": {},
+    "font-awesome": {}
   }
 }

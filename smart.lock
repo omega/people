@@ -4,6 +4,7 @@
     "basePackages": {
       "moment": {},
       "bootstrap-themes": {},
+      "font-awesome": {}
     },
     "packages": {
       "moment": {
@@ -15,6 +16,11 @@
         "git": "https://github.com/eprochasson/meteor-bootstrap-themes",
         "tag": "v0.0.3",
         "commit": "e587bb068b9284b5d3d4efc103669811a2f2623d"
+      },
+      "font-awesome": {
+        "git": "https://github.com/nate-strauser/meteor-font-awesome.git",
+        "tag": "v3.2.0",
+        "commit": "2cba6f907a2579cae2d399b522f9544c13d5e091"
       }
     }
   }
