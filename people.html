@@ -82,7 +82,9 @@
     {{/if}}
 </div>
 <div class="form-ahead">
-<div class="labels">{{#each tags}}<span class="label label-info pull-right">{{this}}</span>{{/each}}</div>
+{{#if tags}}
+<div class="labels">{{#each tags}}<span class="label label-info">{{this}}</span>{{/each}}</div>
+{{/if}}
 {{#markdown}}
 {{text}}
 {{/markdown}}
