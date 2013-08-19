@@ -28,7 +28,6 @@ Meteor.methods
     g = Groups.findOne group
     g = g.name if g
 
-    console.log "    group", g
     return People.insert
       name: name
       group: g
