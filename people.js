@@ -110,6 +110,17 @@ if (Meteor.is_client) {
         }
     };
 
+    Template.person_note.tag_color = function() {
+        for (var i = 0, hash = 0; i < this.length; i++) {
+            hash = this.charCodeAt(i) + (( hash << 5) - hash);
+        }
+        for (var i = 0, colour = '#'; i < 3; i++) {
+            var v = (hash >> (i * 8)) & 0xFF;
+
+            colour += ("00" + v.toString(16)).substr(-2);
+        }
+        return colour;
+    };
 
     Template.person_note.expanded_class = function() {
         var d = new Date(this.date);
