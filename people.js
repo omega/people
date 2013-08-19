@@ -157,12 +157,13 @@ if (Meteor.is_client) {
 
     Meteor.startup(function() {
         window.addEventListener('keypress', function(e) {
+            if (e.metaKey) return;
             var focus = $(':focus').length;
             var code = e.which || e.keyCode;
-            if (!focus && code == 99 ) {
+            if (!focus && code == 99 ) { // c -> new note
                 $('#new_note').focus();
                 e.preventDefault();
-            } else if (!focus && code == 97 ) {
+            } else if (!focus && code == 97 ) { // a -> add/find person
                 $('#person_name').focus();
                 e.preventDefault();
             }
@@ -200,6 +201,8 @@ if (Meteor.is_client) {
                     }
                     e.preventDefault();
                 }
+            } else if ( focus && code == 27 ) { // Escape, lets blur?
+                e.target.blur();
             } else if ( !focus ) {
                 console.log("code: " + code);
             }
