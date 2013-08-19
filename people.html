@@ -140,13 +140,14 @@
         </button>
     </div>
 </h1>
-
+{{#if selected_person.actions}}
 <dl class="dl-horizontal actions">
     {{#each selected_person.actions}}
         {{>person_action}}
     {{/each}}
 </dl>
-<dl class="dl-horizontal">
+{{/if}}
+<dl class="notes dl-horizontal">
     {{#each selected_person.notes}}
         {{>person_note}}
     {{/each}}
