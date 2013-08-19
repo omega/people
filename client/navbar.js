@@ -7,6 +7,23 @@ Template.navbar.selected_group = function() {
     return;
 };
 Template.navbar.events = {
+    'click #addglobaltask': function() {
+        /*
+        $('#addglobaltask').popover({
+            'html': true,
+            'placement': 'bottom'
+        });
+        */
+        var task = window.prompt("Task title", "");
+
+        if (! task) {
+            return;
+        }
+        Meteor.call("add_global_task", task,1,  Session.get("selected_group"), function(err, id) {
+            // Task added?
+            console.log("back from add_global_task", err, id);
+        });
+    },
     'click #add_button': function() {
         var name = document.getElementById('person_name').value;
         // XXX: Should probably display something here :P

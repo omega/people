@@ -1,4 +1,19 @@
 Meteor.methods
+  add_global_task: (title, pri, group) ->
+    if not this.userId
+      console.log "Not logged in, not adding global task"
+      return
+    group = Groups.findOne group
+    q = group: '$in': [null, undefined]
+    if group
+      q.group = group.name
+    people = People.find q
+    people.forEach (person) ->
+      People.update person, '$push': actions:
+        text: title
+        pri: pri
+
+
   create_group: (name) ->
     if not this.userId
       console.log "Not logged in, not creating anything"
