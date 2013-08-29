@@ -4,14 +4,6 @@ Groups = new Meteor.Collection("groups");
 
 
 if (Meteor.isClient) {
-    Handlebars.registerHelper('formatdate', function(object) {
-        var date = moment(new Date(object));
-        return new Handlebars.SafeString(date.fromNow());
-    });
-    Handlebars.registerHelper('noteid', function(object) {
-        var d = new Date(object.date);
-        return new Handlebars.SafeString(d.getTime());
-    });
 
     Template.people.people = function() {
         var group = Groups.findOne(Session.get("selected_group"));
