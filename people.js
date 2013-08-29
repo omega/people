@@ -68,38 +68,6 @@ if (Meteor.isClient) {
             });
         }
     };
-    Template.person_note.events = {
-        'click .toolbox .icon-trash': function() {
-            Meteor.call('note_trash', Session.get("selected_person"), this, function(err, stat) {
-                console.log("Back from note_trash", err, stat);
-            });
-        },
-        'click .toolbox .edit': function(e) {
-            $(e.target).closest('dd').find('.form-behind').toggle();
-            $(e.target).closest('dd').find('.form-ahead').toggle();
-        },
-        'click .save-note': function(e) {
-            var t = $(e.target).closest('.form-behind').find('.edit-note').val();
-            console.log(t, this.origText);
-            if (t == this.origText) {
-                $(e.target).closest('dd').find('.form-behind').toggle();
-                $(e.target).closest('dd').find('.form-ahead').toggle();
-                return;
-            }
-            var n = parseNote(t);
-            Meteor.call('note_save', Session.get("selected_person"), this, n, function(err, stat) {
-                console.log("Back from note_save", err, stat);
-            });
-        },
-        'click .expand': function() {
-            var d = new Date(this.date);
-            Session.set("i" + d.getTime(), 1);
-        },
-        'click .collapser': function() {
-            var d = new Date(this.date);
-            Session.set("i" + d.getTime(), 0);
-        }
-    };
 
     Template.person_note.tag_color = function() {
         for (var i = 0, hash = 0; i < this.length; i++) {
