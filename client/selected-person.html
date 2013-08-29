@@ -1,0 +1,103 @@
+<template name="person_note">
+<dt>
+{{formatdate date}}
+</dt>
+<dd class="clearfix person-note {{expanded_class}}" id="i{{noteid this}}">
+<div class="btn-group pull-right toolbox">
+    <a class="btn btn-mini edit"><i class="icon-pencil"></i></a>
+    <a class="btn btn-mini btn-danger"><i class="icon-trash"></i></a>
+    {{#if expanded}}
+    <a class="btn btn-mini collapser"><i class="icon-chevron-up"></i></a>
+    {{else}}
+    <a class="btn btn-mini expand"><i class="icon-chevron-down"></i></a>
+    {{/if}}
+</div>
+<div class="form-ahead">
+{{#if tags}}
+<div class="labels">{{#each tags}}<span class="label label-info" style="background-color: {{tag_color}}">{{this}}</span>{{/each}}</div>
+{{/if}}
+{{#markdown}}
+{{text}}
+{{/markdown}}
+</div>
+<form class="form-behind hide">
+    <div>
+        <textarea name="edit_note" class="span6 edit-note" rows="5">{{origText}}</textarea>
+    </div>
+    <div>
+        <a class="btn save-note cmd-enter"><i class="icon-comment"></i> Save</a>
+    </div>
+</div>
+</dd>
+</template>
+
+
+<template name="person_action">
+<dt class="action pri-{{pri}}">
+{{#unless done}}
+<div class="btn-group pull-right">
+    <a class="btn btn-mini complete"><i class="icon-ok"></i></a>
+</div>
+{{/unless}}
+</dt>
+<dd class="action pri-{{pri}} {{#if done}}completed{{/if}}">
+<p>
+<span class="text">{{text}}</span>
+{{#if done}} <span class="muted">completed {{formatdate done}}</span>{{/if}}
+<a class="toolbox inline btn btn-mini trash{{#unless done}} btn-danger{{/unless}}"><i class="icon-trash"></i></a>
+</p>
+</dd>
+</template>
+
+
+
+<template name="selectedperson">
+{{#if selected_person}}
+<h1>{{selected_person.name}}
+    <div class="btn-toolbar pull-right clearfix">
+        {{#if group_count}}
+        <div class="btn-group">
+            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                Change group
+                <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                {{>groups}}
+            </ul>
+        </div>
+        {{/if}}
+        <button type="button" class="btn btn-danger remove-person" data:user="{{selected_person._id}}">
+            <i class="icon-trash"></i>
+        </button>
+    </div>
+</h1>
+{{#if selected_person.actions}}
+<dl class="dl-horizontal actions">
+    {{#each selected_person.actions}}
+        {{>person_action}}
+    {{/each}}
+</dl>
+{{/if}}
+<dl class="notes dl-horizontal">
+    {{#each selected_person.notes}}
+        {{>person_note}}
+    {{/each}}
+</dl>
+
+<form class="form-horizontal">
+    <legend>Add note</legend>
+    <div class="control-group">
+        <label for="new_note" class="control-label">New note</label>
+        <div class="controls">
+            <textarea class="span6" name="new_note" id="new_note" rows="5"></textarea>
+        </div>
+    </div>
+    <div class="controls-group">
+        <div class="controls">
+            <a href="#" class="btn cmd-enter"><i class="icon-comment"></i> Add note</a>
+        </div>
+    </div>
+</form>
+{{/if}}
+</template>
+
