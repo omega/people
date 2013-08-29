@@ -92,7 +92,7 @@ Meteor.methods
     lines = note.text.split /\n\n/
     subj = lines[0]
     body = lines[1..-1].join "\n\n"
-    console.log "mailing #{email}", note, subj
+    console.log "mailing #{email}", subj
     Email.send
       from: "andreas@abct.io"
       to: email
