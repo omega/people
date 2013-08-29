@@ -32,6 +32,8 @@ if (Meteor.isClient) {
         var person = People.findOne(Session.get("selected_person"));
         return person;
     };
+    Template.selectedperson.group_count = Template.navbar.group_count;
+
     Template.selectedperson.events = {
         'click .cmd-enter': function() {
             var txt = document.getElementById('new_note').value;
