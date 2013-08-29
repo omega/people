@@ -32,9 +32,11 @@ Template.navbar.events = {
         var p = People.findOne({key: name.toLowerCase()});
         var g;
         if (p) {
-            g = Groups.findOne({name: p.group});
-            Session.set("selected_group", g._id);
             Session.set("selected_person", p._id);
+            if (p.group) {
+                g = Groups.findOne({name: p.group});
+                Session.set("selected_group", g._id);
+            }
         } else {
             Meteor.call("create_person", name, Session.get("selected_group"), function(err, id) {
                 console.log("Back from create_person", err, id);
