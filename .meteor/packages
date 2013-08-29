@@ -11,3 +11,6 @@ accounts-ui-unstyled
 less
 preserve-inputs
 coffeescript
+standard-app-packages
+bootstrap-themes
+font-awesome

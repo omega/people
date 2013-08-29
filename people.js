@@ -3,7 +3,7 @@ People = new Meteor.Collection("people");
 Groups = new Meteor.Collection("groups");
 
 
-if (Meteor.is_client) {
+if (Meteor.isClient) {
     Handlebars.registerHelper('formatdate', function(object) {
         var date = moment(new Date(object));
         return new Handlebars.SafeString(date.fromNow());
@@ -12,9 +12,6 @@ if (Meteor.is_client) {
         var d = new Date(object.date);
         return new Handlebars.SafeString(d.getTime());
     });
-
-    Meteor.subscribe("people");
-    Meteor.subscribe("groups");
 
     Template.people.people = function() {
         var group = Groups.findOne(Session.get("selected_group"));
