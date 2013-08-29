@@ -1,14 +1,16 @@
 Template.person_note.events =
   'click .toolbox .email': (e) ->
-    email = window.prompt "Email address", ""
-    return Meteor.call 'note_email', this, email, (err, stat) ->
-      console.log "Back from note_email", err, stat
+    email = window.prompt "Email address", "a@b.c"
+    if email
+      console.log "email", this, email
+      return Meteor.call 'note_email', this, email, (err, stat) ->
+        console.log "Back from note_email", err, stat
 
   'click .toolbox .icon-trash': ->
     return Meteor.call 'note_trash', Session.get("selected_person"), this, (err, stat) ->
       console.log "Back from note_trash", err, stat
 
-  'click .toolbox .edit': ->
+  'click .toolbox .edit': (e) ->
     $(e.target).closest('dd').find('.form-behind').toggle();
     $(e.target).closest('dd').find('.form-ahead').toggle();
   'click .save-note': (e) ->

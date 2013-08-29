@@ -88,4 +88,18 @@ Meteor.methods
     console.log "deleting note on #{person}", note
     return People.update person, '$pull': notes: note
 
+  note_email: (note, email) ->
+    lines = note.text.split /\n\n/
+    subj = lines[0]
+    body = lines[1..-1].join "\n\n"
+    console.log "mailing #{email}", note, subj
+    Email.send
+      from: "andreas@abct.io"
+      to: email
+      subject: "Note from People: #{subj} (#{note.tags.join ', '})"
+      text: note.text
+
+
+
+
 
