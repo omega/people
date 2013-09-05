@@ -5,40 +5,36 @@
 
 <body>
     <div class="navbar navbar-fixed-top navbar-inverse">
-        <div class="navbar-inner">
-            <div class="container">
-                {{> navbar}}
-            </div>
+        <div class="container">
+            {{> navbar}}
         </div>
     </div>
     <div class="container">
         <div class="row">
             {{#if currentUser}}
-            <div class="span3">
-                <ul class="nav nav-list people">
+            <div class="col-md-3">
+                <ul class="nav nav-pills nav-stacked people">
                     {{> people}}
                 </ul>
             </div>
-            <div class="span9">
+            <div class="col-md-9">
                 {{>selectedperson}}
             </div>
             {{else}}
-            <div class="span12">
+            <div class="col-md-12">
                 {{>welcome}}
             </div>
             {{/if}}
         </div>
     </div>
-    <div class="navbar navbar-fixed-bottom footer">
-        <div class="navbar-inner">
-            <div class="container">
-                <p class="light-keys">
-                <span><kbd>⌘</kbd> + <kbd>⏎</kbd> Save note</span>
-                <span><kbd>c</kbd> Focus comment field</span>
-                <span><kbd>a</kbd> Focus find or create person field</span>
-                <span><kbd>⌘</kbd> + <kbd>▲/▼</kbd> Change person</span>
-                </p>
-            </div>
+    <div class="navbar navbar-default navbar-fixed-bottom footer">
+        <div class="container">
+            <p class="light-keys navbar-text navbar-right">
+            <span><kbd>⌘</kbd> + <kbd>⏎</kbd> Save note</span>
+            <span><kbd>c</kbd> Focus comment field</span>
+            <span><kbd>a</kbd> Focus find or create person field</span>
+            <span><kbd>⌘</kbd> + <kbd>▲/▼</kbd> Change person</span>
+            </p>
         </div>
     </div>
     {{> modals}}

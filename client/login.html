@@ -1,19 +1,29 @@
 <template name="loggedInUser">
-<ul class="nav user">
-    <li><a class="logout" href="#">Log out</a></li>
+<ul class="nav navbar-nav user navbar-right">
+    <li class="dropdown">
+        <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="icon-user"></i> <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+            <li><a class="settings" href="#">Settings</a></li>
+            <li><a class="logout" href="#">Log out</a></li>
+        </ul>
+    </li>
 </ul>
 </template>
 <template name="loginform">
 <form class="form-inline">
-    <span class="control-group">
-        <input type="text" placeholder="Username" name="username" class="input-block">
-    </span>
-    <span class="control-group">
-        <input type="password" placeholder="Password" name="password" class="input-block">
-    </span>
-    <button class="btn btn-primary login" type="button">Log in</button>
-    <span class="or"> or </span>
-    <button class="btn adduser" type="button">Register</button>
+    <div class="form-group">
+        <input type="text" placeholder="Username" name="username" class="form-control">
+    </div>
+    <div class="form-group">
+        <input type="password" placeholder="Password" name="password" class="form-control">
+    </div>
+    <div class="form-group">
+        <button class="btn btn-primary login" type="button">Log in</button>
+        <span class="or"> or </span>
+        <button class="btn adduser" type="button">Register</button>
+    </div>
 </form>
 </template>
 

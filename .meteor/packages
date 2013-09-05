@@ -12,6 +12,6 @@ less
 preserve-inputs
 coffeescript
 standard-app-packages
-bootstrap-themes
 font-awesome
 email
+bootstrap3-less

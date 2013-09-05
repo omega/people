@@ -4,13 +4,13 @@
 </dt>
 <dd class="clearfix person-note {{expanded_class}}" id="i{{noteid this}}">
 <div class="btn-group pull-right toolbox">
-    <a class="btn btn-mini edit"><i class="icon-pencil"></i></a>
-    <a class="btn btn-mini btn-danger"><i class="icon-trash"></i></a>
-    <a class="btn btn-mini email"><i class="icon-envelope"></i></a>
+    <a class="btn btn-xs btn-default edit"><i class="icon-pencil"></i></a>
+    <a class="btn btn-xs btn-danger"><i class="icon-trash"></i></a>
+    <a class="btn btn-xs btn-default email"><i class="icon-envelope"></i></a>
     {{#if expanded}}
-    <a class="btn btn-mini collapser"><i class="icon-chevron-up"></i></a>
+    <a class="btn btn-xs btn-default collapser"><i class="icon-chevron-up"></i></a>
     {{else}}
-    <a class="btn btn-mini expand"><i class="icon-chevron-down"></i></a>
+    <a class="btn btn-xs btn-default expand"><i class="icon-chevron-down"></i></a>
     {{/if}}
 </div>
 <div class="form-ahead">
@@ -21,12 +21,14 @@
 {{text}}
 {{/markdown}}
 </div>
-<form class="form-behind hide">
-    <div>
-        <textarea name="edit_note" class="span6 edit-note" rows="5">{{origText}}</textarea>
+<form class="form-behind" style="display: none;">
+    <div class="form-group">
+        <textarea name="edit_note" class="form-control edit-note" rows="5">{{origText}}</textarea>
+    </div>
+    <div class="form-group">
+        <a class="btn btn-primary save-note cmd-enter"><i class="icon-comment"></i> Save</a>
     </div>
     <div>
-        <a class="btn save-note cmd-enter"><i class="icon-comment"></i> Save</a>
     </div>
 </div>
 </dd>
@@ -37,7 +39,7 @@
 <dt class="action pri-{{pri}}">
 {{#unless done}}
 <div class="btn-group pull-right">
-    <a class="btn btn-mini complete"><i class="icon-ok"></i></a>
+    <a class="btn btn-xs complete"><i class="icon-ok"></i></a>
 </div>
 {{/unless}}
 </dt>
@@ -45,7 +47,7 @@
 <p>
 <span class="text">{{text}}</span>
 {{#if done}} <span class="muted">completed {{formatdate done}}</span>{{/if}}
-<a class="toolbox inline btn btn-mini trash{{#unless done}} btn-danger{{/unless}}"><i class="icon-trash"></i></a>
+<a class="toolbox inline btn btn-xs trash{{#unless done}} btn-danger{{else}} btn-default{{/unless}}"><i class="icon-trash"></i></a>
 </p>
 </dd>
 </template>
@@ -58,7 +60,7 @@
     <div class="btn-toolbar pull-right clearfix">
         {{#if group_count}}
         <div class="btn-group">
-            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+            <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="#">
                 Change group
                 <span class="caret"></span>
             </a>
@@ -67,9 +69,11 @@
             </ul>
         </div>
         {{/if}}
-        <button type="button" class="btn btn-danger remove-person" data:user="{{selected_person._id}}">
-            <i class="icon-trash"></i>
-        </button>
+        <div class="btn-group">
+            <button type="button" class="btn btn-danger remove-person" data:user="{{selected_person._id}}">
+                <i class="icon-trash"></i>
+            </button>
+        </div>
     </div>
 </h1>
 {{#if selected_person.actions}}
@@ -87,16 +91,16 @@
 
 <form class="form-horizontal">
     <legend>Add note</legend>
-    <div class="control-group">
-        <label for="new_note" class="control-label">New note</label>
-        <div class="controls">
-            <textarea class="span6" name="new_note" id="new_note" rows="5"></textarea>
+    <div class="form-group">
+        <label for="new_note" class="col-lg-2 control-label">New note</label>
+        <div class="col-lg-8">
+            <textarea class="form-control" name="new_note" id="new_note" rows="5"></textarea>
+        </div>
+        <div class="col-lg-2">
+            <a href="#" class="btn btn-primary cmd-enter"><i class="icon-comment"></i> Add note</a>
         </div>
     </div>
-    <div class="controls-group">
-        <div class="controls">
-            <a href="#" class="btn cmd-enter"><i class="icon-comment"></i> Add note</a>
-        </div>
+    <div class="form-group">
     </div>
 </form>
 {{/if}}

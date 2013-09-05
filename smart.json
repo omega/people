@@ -1,7 +1,7 @@
 {
   "packages": {
     "moment": {},
-    "bootstrap-themes": {},
-    "font-awesome": {}
+    "font-awesome": {},
+    "bootstrap3-less": {}
   }
 }
