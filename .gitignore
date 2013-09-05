@@ -3,3 +3,4 @@
 dump
 *.gz
 packages
+settings.json

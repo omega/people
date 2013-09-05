@@ -93,11 +93,12 @@ Meteor.methods
     return People.update person, '$pull': notes: note
 
   note_email: (note, email) ->
+    return console.log "From email not set.." unless Meteor.settings.from_mail
     lines = note.text.split /\n\n/
     subj = lines[0]
     body = lines[1..-1].join "\n\n"
     Email.send
-      from: "andreas@abct.io"
+      from: Meteor.settings.from_mail
       to: email
       subject: "Note from People: #{subj} (#{note.tags.join ', '})"
       text: note.text
