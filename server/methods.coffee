@@ -41,6 +41,10 @@ Meteor.methods
     console.log "Removing #{person}"
     return People.remove _id: person
 
+  person_set_export_mail: (person, email) ->
+    console.log "Saving #{email} on #{person}"
+    return People.update person, $set: email: email
+
 
 # methods for actions
 Meteor.methods
@@ -92,7 +96,6 @@ Meteor.methods
     lines = note.text.split /\n\n/
     subj = lines[0]
     body = lines[1..-1].join "\n\n"
-    console.log "mailing #{email}", subj
     Email.send
       from: "andreas@abct.io"
       to: email

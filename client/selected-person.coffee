@@ -1,8 +1,11 @@
 Template.person_note.events =
   'click .toolbox .email': (e) ->
-    email = window.prompt "Email address", "a@b.c"
+    p = People.findOne Session.get "selected_person"
+    email = window.prompt "Email address", p.email or "a@b.c"
     if email
-      console.log "email", this, email
+      # Add the email to the user, so we can reuse it later
+      Meteor.call 'person_set_export_mail', Session.get("selected_person"), email, (err, res) ->
+        console.log "Back from person_set_export_mail, ", err, res
       return Meteor.call 'note_email', this, email, (err, stat) ->
         console.log "Back from note_email", err, stat
 
