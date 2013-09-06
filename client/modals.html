@@ -1,2 +1,32 @@
 <template name="modals">
+{{>userSettings}}
+</template>
+
+<template name="userSettings">
+<div id="userSettings" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4>Settings</h4>
+            </div>
+            <div class="modal-body">
+                {{>userSettingsContent}}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary save">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+</template>
+<template name="userSettingsContent">
+<form>
+    <div class="form-group">
+        <label for="userEmail">Email address</label>
+        <input type="email" name="email" class="form-control" id="userEmail" placeholder="Enter your email"
+            value="{{email}}">
+    </div>
+</form>
 </template>

@@ -15,6 +15,9 @@ function removeError(input) {
 Template.loggedInUser.events = {
     'click .logout': function(e) {
         Meteor.logout();
+    },
+    'click .settings': function(e) {
+        $('#userSettings').modal();
     }
 };
 var UEtimer;

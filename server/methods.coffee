@@ -98,7 +98,7 @@ Meteor.methods
     subj = lines[0]
     body = lines[1..-1].join "\n\n"
     Email.send
-      from: Meteor.settings.from_mail
+      from: Meteor.user()?.emails?[0]?.address or Meteor.settings.from_mail
       to: email
       subject: "Note from People: #{subj} (#{note.tags.join ', '})"
       text: note.text
@@ -106,4 +106,11 @@ Meteor.methods
 
 
 
+
+# Methods for users, profile data etc
+
+Meteor.methods
+  user_save_settings: (email) ->
+    console.log "updating user settings", email
+    Meteor.users.update({_id: Meteor.user()._id}, '$set': emails: [{address: email}])
 
