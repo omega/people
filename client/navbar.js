@@ -56,6 +56,7 @@ Template.navbar.events = {
             $(e.target).parent().find('button').click();
             e.target.value = '';
             e.preventDefault();
+            e.target.blur();
         } else if ( code == 27 ) {
             e.target.value = '';
             e.target.blur();
