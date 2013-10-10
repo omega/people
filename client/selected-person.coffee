@@ -26,9 +26,9 @@ Template.person_note.events =
     return Meteor.call 'note_save', Session.get("selected_person"), this, n, (err, stat) ->
       console.log "Back from note_save", err, stat
 
-  'click .expand': ->
+  'click .expand, click .person-note.collapsed': ->
     d = new Date @date;
     return Session.set "i" + d.getTime(), 1
-  'click .collapser': ->
+  'click .collapser, click .person-note.expanded': ->
     d = new Date @date
     return Session.set "i" + d.getTime(), 0
