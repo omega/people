@@ -36,6 +36,10 @@ Template.navbar.events = {
             if (p.group) {
                 g = Groups.findOne({name: p.group});
                 Session.set("selected_group", g._id);
+            } else {
+                // the person isn't in a group, so lets change to "no group
+                // selected"
+                Session.set("selected_group");
             }
         } else {
             Meteor.call("create_person", name, Session.get("selected_group"), function(err, id) {
