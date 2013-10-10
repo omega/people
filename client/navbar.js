@@ -49,7 +49,7 @@ Template.navbar.events = {
         var code = e.which || e.keyCode;
 
         if (code == 13) {
-            $(e.target).siblings('button').click();
+            $(e.target).parent().find('button').click();
             e.target.value = '';
             e.preventDefault();
         } else if ( code == 27 ) {
