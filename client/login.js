@@ -24,8 +24,8 @@ var UEtimer;
 Template.loginform.events = {
     'click .login': function(e) {
         console.log("logging in");
-        var u = $(e.target).parent().find('input[type="text"]');
-        var p = $(e.target).parent().find('input[type="password"]');
+        var u = $(e.target).parent().parent().find('input[type="text"]');
+        var p = $(e.target).parent().parent().find('input[type="password"]');
         Meteor.loginWithPassword(u.val(), p.val(), function(err) {
             if (err) {
                 if (err.reason.match(/user/i)) {
@@ -72,8 +72,8 @@ Template.loginform.events = {
         removeError($(e.target));
     },
     'click .adduser': function(e) {
-        var u = $(e.target).parent().find('input[type="text"]');
-        var p = $(e.target).parent().find('input[type="password"]');
+        var u = $(e.target).parent().parent().find('input[type="text"]');
+        var p = $(e.target).parent().parent().find('input[type="password"]');
         var errors = 0;
         if (!u.val()) {
             errors++;
