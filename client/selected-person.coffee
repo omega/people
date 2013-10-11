@@ -1,5 +1,6 @@
 Template.person_note.events =
   'click .toolbox .email': (e) ->
+    e.stopPropagation()
     p = People.findOne Session.get "selected_person"
     email = window.prompt "Email address", p.email or "a@b.c"
     if email
@@ -9,20 +10,23 @@ Template.person_note.events =
       return Meteor.call 'note_email', this, email, (err, stat) ->
         console.log "Back from note_email", err, stat
 
-  'click .toolbox .icon-trash': ->
+  'click .toolbox .icon-trash': (e) ->
+    e.stopPropagation()
     return Meteor.call 'note_trash', Session.get("selected_person"), this, (err, stat) ->
       console.log "Back from note_trash", err, stat
 
   'click .toolbox .edit': (e) ->
-    $(e.target).closest('dd').find('.form-behind').toggle();
-    $(e.target).closest('dd').find('.form-ahead').toggle();
+    $(e.target).closest('dd').find('.form-behind').toggle()
+    $(e.target).closest('dd').find('.form-ahead').toggle()
+    e.stopPropagation()
+
   'click .save-note': (e) ->
-    t = $(e.target).closest('.form-behind').find('.edit-note').val();
+    t = $(e.target).closest('.form-behind').find('.edit-note').val()
     if t == @origText
-      $(e.target).closest('dd').find('.form-behind').toggle();
-      $(e.target).closest('dd').find('.form-ahead').toggle();
-      return;
-    n = parseNote t;
+      $(e.target).closest('dd').find('.form-behind').toggle()
+      $(e.target).closest('dd').find('.form-ahead').toggle()
+      return
+    n = parseNote t
     return Meteor.call 'note_save', Session.get("selected_person"), this, n, (err, stat) ->
       console.log "Back from note_save", err, stat
 
