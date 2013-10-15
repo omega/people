@@ -166,4 +166,26 @@ button {
         display: none !important;
     }
 }
+#person-menu.affix {
+    width: 100%;
+    top: 48px;
+    margin-left: -15px;
+    margin-right: -15px;
+}
+@media (min-width: @screen-tablet) {
+    #person-menu.affix {
+        width: @container-tablet - @grid-gutter-width;
+        margin: 0;
+    }
+}
+@media (min-width: @screen-desktop) {
+    #person-menu.affix {
+        width: 697px;
+    }
+}
+@media (min-width: 1199px) {
+    #person-menu.affix {
+        width: 847px;
+    }
+}
 

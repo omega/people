@@ -1,3 +1,6 @@
+Template.selectedperson.rendered = ->
+  $('#person-menu').affix({ offset: 12 })
+
 Template.person_note.events =
   'click .toolbox .email': (e) ->
     e.stopPropagation()
