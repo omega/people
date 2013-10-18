@@ -36,6 +36,7 @@ Template.person_note.events =
   'click .expand, click .person-note.collapsed': ->
     d = new Date @date;
     return Session.set "i" + d.getTime(), 1
-  'click .collapser, click .person-note.expanded': ->
+  'click .collapser, click .person-note.expanded': (e) ->
+    return if e.target.parentNode.parentNode.classList.contains 'form-behind'
     d = new Date @date
     return Session.set "i" + d.getTime(), 0
