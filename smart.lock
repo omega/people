@@ -8,9 +8,9 @@
     },
     "packages": {
       "moment": {
-        "git": "https://github.com/possibilities/meteor-moment.git",
-        "tag": "v1.7.0",
-        "commit": "c64b6ec0e714b9556f4b6643d430b868ba69d3d7"
+        "git": "https://github.com/acreeger/meteor-moment.git",
+        "tag": "v2.2.1",
+        "commit": "9ee12e714afe56b189f53076447b7b54f3012065"
       },
       "font-awesome": {
         "git": "https://github.com/nate-strauser/meteor-font-awesome.git",
@@ -19,8 +19,8 @@
       },
       "bootstrap3-less": {
         "git": "https://github.com/eprochasson/bootstrap3-less",
-        "tag": "v0.1.1",
-        "commit": "82d3e32b6a44bad7bd439b9e02ce33161e58996d"
+        "tag": "v0.1.4",
+        "commit": "23ec918f8377b15b22cba33e13b717214235c88a"
       }
     }
   }
