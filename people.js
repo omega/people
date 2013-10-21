@@ -20,11 +20,7 @@ if (Meteor.isClient) {
         return People.find(q, {sort: {name: 1}});
     };
 
-    Template.selectedperson.selected_person = function() {
-        var person = People.findOne(Session.get("selected_person"));
-        return person;
-    };
-    Template.selectedperson.group_count = Template.navbar.group_count;
+    Template.sp_navbar.group_count = Template.navbar.group_count;
 
     Template.selectedperson.events = {
         'click .cmd-enter': function() {
@@ -34,25 +30,6 @@ if (Meteor.isClient) {
             var n = parseNote(txt);
             Meteor.call('note_save', Session.get("selected_person"), null, n, function(err, stat) {
                 console.log("Back from note_save new note", err, stat);
-            });
-        },
-        'click .remove-person': function(e) {
-            var id = e.target.getAttribute('data:user');
-            Meteor.call('person_remove', id, function(err, stat) {
-                console.log("return from person_remove", err, stat);
-                if (!err) {
-                    Session.set("selected_group");
-                    Session.set("selected_person");
-                }
-            });
-        },
-        'click .group': function() {
-            var self = this;
-            Meteor.call('person_change_group', Session.get("selected_person"), this.name, function(err, stat) {
-                console.log("Return from person_change_group", err, stat);
-                if (!err) {
-                    Session.set("selected_group", self._id);
-                }
             });
         }
     };

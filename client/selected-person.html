@@ -56,6 +56,36 @@
 
 <template name="selectedperson">
 {{#if selected_person}}
+{{>sp_navbar}}
+{{#if selected_person.actions}}
+<dl class="dl-horizontal actions">
+    {{#each selected_person.actions}}
+        {{>person_action}}
+    {{/each}}
+</dl>
+{{/if}}
+<dl class="notes dl-horizontal">
+    {{#each selected_person.notes}}
+        {{>person_note}}
+    {{/each}}
+</dl>
+
+<form class="form-horizontal">
+    <legend>Add note</legend>
+    <div class="form-group">
+        <label for="new_note" class="col-lg-2 control-label">New note</label>
+        <div class="col-lg-8">
+            <textarea class="form-control" name="new_note" id="new_note" rows="5"></textarea>
+        </div>
+        <div class="col-lg-2">
+            <a href="#" class="btn btn-primary cmd-enter"><i class="icon-comment"></i> Add note</a>
+        </div>
+    </div>
+</form>
+{{/if}}
+</template>
+
+<template name="sp_navbar">
 <nav class="navbar navbar-default" id="person-menu" data-spy="affix">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-person-collapse">
@@ -85,31 +115,4 @@
         </button>
     </div>
 </nav>
-{{#if selected_person.actions}}
-<dl class="dl-horizontal actions">
-    {{#each selected_person.actions}}
-        {{>person_action}}
-    {{/each}}
-</dl>
-{{/if}}
-<dl class="notes dl-horizontal">
-    {{#each selected_person.notes}}
-        {{>person_note}}
-    {{/each}}
-</dl>
-
-<form class="form-horizontal">
-    <legend>Add note</legend>
-    <div class="form-group">
-        <label for="new_note" class="col-lg-2 control-label">New note</label>
-        <div class="col-lg-8">
-            <textarea class="form-control" name="new_note" id="new_note" rows="5"></textarea>
-        </div>
-        <div class="col-lg-2">
-            <a href="#" class="btn btn-primary cmd-enter"><i class="icon-comment"></i> Add note</a>
-        </div>
-    </div>
-</form>
-{{/if}}
 </template>
-

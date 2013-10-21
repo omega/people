@@ -1,6 +1,10 @@
 Template.selectedperson.rendered = ->
   $('#person-menu').affix({ offset: 12 })
 
+Template.selectedperson.selected_person = ->
+  return People.findOne Session.get "selected_person"
+
+
 Template.person_note.events =
   'click .toolbox .email': (e) ->
     e.stopPropagation()
@@ -40,3 +44,22 @@ Template.person_note.events =
     return if e.target.parentNode.parentNode.classList.contains 'form-behind'
     d = new Date @date
     return Session.set "i" + d.getTime(), 0
+
+
+Template.sp_navbar.selected_person = Template.selectedperson.selected_person
+
+Template.sp_navbar.events =
+  'click .remove-person': (e) ->
+    id = e.target.getAttribute('data:user');
+    Meteor.call 'person_remove', id, (err, stat) ->
+      console.log "return from person_remove", err, stat
+      if not err
+        Session.set "selected_group"
+        Session.set "selected_person"
+  'click .group': ->
+    console.log "group id", @_id
+    id = @_id
+    Meteor.call 'person_change_group', Session.get("selected_person"), @name, (err, stat) ->
+      console.log "Return from person_change_group", err, stat
+      if not err
+        Session.set "selected_group", id
