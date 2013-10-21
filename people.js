@@ -22,7 +22,6 @@ if (Meteor.isClient) {
         return People.find(q, {sort: {name: 1}});
     };
 
-    Template.sp_navbar.group_count = Template.navbar.group_count;
 
     Template.selectedperson.events = {
         'click .cmd-enter': function() {
