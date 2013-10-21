@@ -3,10 +3,10 @@ Meteor.methods
     if not this.userId
       console.log "Not logged in, not adding person label"
       return
-    old = PeopleLabels.findOne owner: @userId, name: name
+    old = PeopleLabels.findOne owner: @userId, name: name.toLowerCase()
     if old
       return old
-    return PeopleLabels.insert owner: @userId, name: name
+    return PeopleLabels.insert owner: @userId, name: name.toLowerCase()
 
   add_global_task: (title, pri, group) ->
     if not this.userId
