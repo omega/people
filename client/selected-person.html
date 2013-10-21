@@ -94,10 +94,31 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">{{selected_person.name}}</a>
+        <a class="navbar-brand" href="#">
+            {{selected_person.name}}
+            {{#if selected_person.label}}
+            <span class="label label-default">{{selected_person.label}}</span>
+            {{/if}}
+        </a>
     </div>
     <div class="collapse navbar-collapse navbar-person-collapse">
         <ul class="nav navbar-nav">
+            <li class="dropdown person-labels">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    Change person label<span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    {{#if person_labels_count}}
+                        {{#each person_labels}}
+                            {{> person_label}}
+                        {{/each}}
+                    <li class="divider"></li>
+                    {{/if}}
+                    <li><a href="#" class="none">No label</a></li>
+                    <li><a href="#" class="new-label"><span class="icon-plus"></span>Add new label</a></li>
+                </ul>
+            </li>
+
             {{#if group_count}}
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -115,4 +136,10 @@
         </button>
     </div>
 </nav>
+</template>
+
+<template name="person_label">
+<li><a class="person-label {{selected_class}}" href="#">
+    {{#if selected_class}}<i class="icon-ok pull-right"></i>{{/if}}
+    {{name}}</a></li>
 </template>

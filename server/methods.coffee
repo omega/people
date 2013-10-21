@@ -1,4 +1,13 @@
 Meteor.methods
+  add_person_label: (name) ->
+    if not this.userId
+      console.log "Not logged in, not adding person label"
+      return
+    old = PeopleLabels.findOne owner: @userId, name: name
+    if old
+      return old
+    return PeopleLabels.insert owner: @userId, name: name
+
   add_global_task: (title, pri, group) ->
     if not this.userId
       console.log "Not logged in, not adding global task"
@@ -44,6 +53,10 @@ Meteor.methods
   person_set_export_mail: (person, email) ->
     console.log "Saving #{email} on #{person}"
     return People.update person, $set: email: email
+
+  person_set_label: (person, label) ->
+    console.log "Setting label of #{person} to #{label}"
+    return People.update person, $set: label: label
 
 
 # methods for actions

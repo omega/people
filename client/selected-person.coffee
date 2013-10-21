@@ -47,6 +47,10 @@ Template.person_note.events =
 
 
 Template.sp_navbar.selected_person = Template.selectedperson.selected_person
+Template.sp_navbar.person_labels_count = ->
+  return PeopleLabels.find().count()
+Template.sp_navbar.person_labels = ->
+  return PeopleLabels.find({}, sort: {name: 1})
 
 Template.sp_navbar.events =
   'click .remove-person': (e) ->
@@ -63,3 +67,19 @@ Template.sp_navbar.events =
       console.log "Return from person_change_group", err, stat
       if not err
         Session.set "selected_group", id
+
+  'click .person-labels .new-label': ->
+    label = window.prompt "Enter new label name"
+    Meteor.call "add_person_label", label, (err, stat) ->
+      console.log "back from add_person_label", err, stat
+      # XXX: Should probably let the user know..?
+      return if err
+      Meteor.call "person_set_label", Session.get("selected_person"), label, (err, stat) ->
+        console.log "Back from person_set_label", err, stat
+
+  'click .person-labels .person-label': ->
+    Meteor.call "person_set_label", Session.get("selected_person"), @name, (err, stat) ->
+      console.log "Return from person_set_label", err, stat
+  'click .person-labels .none': ->
+    Meteor.call "person_set_label", Session.get("selected_person"), "", (err, stat) ->
+      console.log "Return from person_set_label", err, stat

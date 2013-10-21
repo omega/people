@@ -11,6 +11,13 @@ Meteor.publish("groups", function() {
     }
     return Groups.find({owner: this.userId});
 });
+Meteor.publish("peoplelabels", function() {
+    if (!this.userId) {
+        console.log("Not logged in, not returning any groups");
+    }
+    return PeopleLabels.find({owner: this.userId});
+});
+
 
 Meteor.startup(function() {
     var canModify = function(userId, objs) {
@@ -26,6 +33,7 @@ Meteor.startup(function() {
     };
     People.allow(allow);
     Groups.allow(allow);
+    PeopleLabels.allow(allow);
 });
 
 
