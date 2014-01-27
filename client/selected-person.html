@@ -103,33 +103,44 @@
     </div>
     <div class="collapse navbar-collapse navbar-person-collapse">
         <ul class="nav navbar-nav">
+            <li class="dropdown person-options">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    Options<span class="caret"></span>
+
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="#" class="rename-person">Rename</a></li>
+                </ul>
+            </li>
+
+
             <li class="dropdown person-labels">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    Change person label<span class="caret"></span>
+                    Label<span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
                     {{#if person_labels_count}}
-                        {{#each person_labels}}
-                            {{> person_label}}
-                        {{/each}}
+                    {{#each person_labels}}
+                    {{> person_label}}
+                    {{/each}}
                     <li class="divider"></li>
                     {{/if}}
                     <li><a href="#" class="none">No label</a></li>
                     <li><a href="#" class="new-label"><span class="icon-plus"></span>Add new label</a></li>
                 </ul>
-            </li>
+                </li>
 
-            {{#if group_count}}
-            <li class="dropdown">
+                {{#if group_count}}
+                <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    Change group
+                    Group
                     <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
                     {{>groups}}
                 </ul>
-            </div>
-            {{/if}}
+                {{/if}}
+            </li>
         </ul>
         <button type="button" class="navbar-btn navbar-right btn btn-danger remove-person" data:user="{{selected_person._id}}">
             <i class="icon-trash"></i>

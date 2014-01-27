@@ -58,6 +58,10 @@ Meteor.methods
     console.log "Setting label of #{person} to #{label}"
     return People.update person, $set: label: label
 
+  person_rename: (person, newname) ->
+    console.log "Renaming #{person} to #{newname}"
+    return People.update person, $set: name: newname, key: newname.toLowerCase()
+
 
 # methods for actions
 Meteor.methods

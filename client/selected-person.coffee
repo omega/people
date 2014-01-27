@@ -84,3 +84,8 @@ Template.sp_navbar.events =
   'click .person-labels .none': ->
     Meteor.call "person_set_label", Session.get("selected_person"), "", (err, stat) ->
       console.log "Return from person_set_label", err, stat
+
+  'click .person-options .rename-person': ->
+    newname = window.prompt "Enter new name"
+    Meteor.call "person_rename", Session.get("selected_person"), newname, (err, stat) ->
+      console.log "Return from rename_person", err, stat
