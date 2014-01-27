@@ -58,6 +58,18 @@ if (Meteor.isClient) {
         }
         return colour;
     };
+    Template.person_note.tag_text_color = function() {
+        var color = Template.person_note.tag_color.apply(this);
+        var bg = color;
+        color = color.substring(1);           // remove #
+        var c = new Object;
+        c.R = parseInt(color.slice(0,2), 16);
+        c.G = parseInt(color.slice(2,4), 16);
+        c.B = parseInt(color.slice(4,6), 16);
+        var a = 1 - (0.299 * c.R + 0.587 * c.G + 0.114 * c.B)/255;
+        console.log(bg, a);
+        return a < 0.5 ? "black" : "white";
+    }
 
     Template.person_note.expanded_class = function() {
         var d = new Date(this.date);
