@@ -1,15 +1,4 @@
-<template name="navbar">
-<div class="navbar-header">
-    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-top-collapse">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-    </button>
-    <a class="navbar-brand" href="#">People</a>
-</div>
-<div class="collapse navbar-collapse navbar-top-collapse">
-{{#if currentUser}}
+<template name="all-people-navbar">
     {{#if group_count}}
     <ul class="nav navbar-nav">
         <li class="dropdown">
@@ -30,7 +19,6 @@
         </li>
     </ul>
     {{/if}}
-    {{>loggedInUser}}
     <form class="navbar-form navbar-right span3 hidden-xs">
         <div class="input-group">
             <input id="person_name" type="text" placeholder="Find or create person" class="form-control"/>
@@ -50,8 +38,6 @@
     <form class="navbar-form navbar-left">
         <button title="Add global task" type="button" id="addglobaltask" class="btn"><i class="icon-plus"></i> <span class="inline-visible-xs">Add global task</span></button>
     </form>
-{{/if}}
 
-</div>
 </template>
 

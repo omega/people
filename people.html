@@ -1,3 +1,4 @@
+<template name="layout">
 <head>
     <title>people</title>
     <meta charset="utf-8">
@@ -5,27 +6,26 @@
 </head>
 
 <body>
-    <div class="navbar navbar-fixed-top navbar-inverse">
+    <div class="top-menu navbar navbar-fixed-top navbar-inverse">
         <div class="container">
-            {{> navbar}}
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-top-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand goto-dashboard" href="{{ pathFor 'dashboard' }}">People</a>
+            </div>
+            <div class="collapse navbar-collapse navbar-top-collapse">
+                {{yield 'navbar'}}
+                {{>loggedInUser}}
+            </div>
         </div>
     </div>
     <div class="container">
         <div class="row">
-            {{#if currentUser}}
-            <div class="col-md-3">
-                <ul class="nav nav-pills nav-stacked people hidden-xs hidden-sm">
-                    {{> people}}
-                </ul>
-            </div>
-            <div class="col-md-9">
-                {{>selectedperson}}
-            </div>
-            {{else}}
-            <div class="col-md-12">
-                {{>welcome}}
-            </div>
-            {{/if}}
+            {{yield}}
         </div>
     </div>
     <div class="navbar navbar-default navbar-fixed-bottom footer hidden-xs">
@@ -40,8 +40,18 @@
     </div>
     {{> modals}}
 </body>
+</template>
+<template name="all-people">
+            <div class="col-md-3">
+                <ul class="nav nav-pills nav-stacked people hidden-xs hidden-sm">
+                    {{> people}}
+                </ul>
+            </div>
+            <div class="col-md-9">
+                {{>selectedperson}}
+            </div>
 
-
+</template>
 <template name="people">
 {{#each people}}
     {{> person}}
@@ -57,10 +67,10 @@
     {{#if note_count}}
     <span class="badge outside">{{note_count}}</span>
     {{/if}}
-    {{name}}
     {{#if label}}
     <span class="label label-default pull-right">{{label}}</span>
     {{/if}}
+    {{name}}
 </a>
 </li>
 </template>

@@ -47,7 +47,7 @@ Template.person_note.events =
 
 
 Template.sp_navbar.selected_person = Template.selectedperson.selected_person
-Template.sp_navbar.group_count = Template.navbar.group_count
+Template.sp_navbar.group_count = Template["all-people-navbar"].group_count
 Template.sp_navbar.person_labels_count = ->
   return PeopleLabels.find().count()
 Template.sp_navbar.person_labels = ->

@@ -1,7 +1,10 @@
 {
   "packages": {
     "moment": {},
-    "font-awesome": {},
-    "bootstrap3-less": {}
+    "font-awesome": {
+        "version": "3.2.1"
+    },
+    "bootstrap3-less": {},
+    "iron-router": {}
   }
 }

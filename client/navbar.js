@@ -1,12 +1,12 @@
-Template.navbar.group_count = function() {
+Template["all-people-navbar"].group_count = function() {
     return Groups.find().count();
 };
-Template.navbar.selected_group = function() {
+Template["all-people-navbar"].selected_group = function() {
     var group = Groups.findOne(Session.get("selected_group"));
     if (group) return group.name;
     return;
 };
-Template.navbar.events = {
+Template["all-people-navbar"].events = {
     'click #addglobaltask': function() {
         /*
         $('#addglobaltask').popover({
