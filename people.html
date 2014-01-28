@@ -61,16 +61,19 @@
 
 
 <template name="person">
-<li class="person {{selected_class}}">
+<li class="person {{selected_class}} {{#if email}}email{{/if}}">
 <a href="#">
     <i class="icon-chevron-right pull-right"></i>
+    {{#if email}}
+    <img src="{{ gravatar email }}" class="gravatar">
+    {{/if}}
     {{#if note_count}}
     <span class="badge outside">{{note_count}}</span>
     {{/if}}
     {{#if label}}
     <span class="label label-default pull-right">{{label}}</span>
     {{/if}}
-    {{name}}
+    <span class="name">{{name}}</span>
 </a>
 </li>
 </template>
