@@ -67,6 +67,20 @@ h1 .btn-toolbar {
             margin-right: -6px;
         }
     }
+
+    .person {
+        position: relative;
+        .outside {
+            position: absolute;
+            left: -18px;
+            top: 12px
+        }
+        &.active .outside {
+            border-color: rgb(66, 139, 202);
+            border: 2px solid;
+            padding: 1px 5px;
+        }
+    }
 }
 .actions {
     dd {
