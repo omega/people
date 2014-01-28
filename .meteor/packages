@@ -17,3 +17,5 @@ email
 bootstrap3-less
 autoupdate
 iron-router
+crypto-md5
+people-gravatar
