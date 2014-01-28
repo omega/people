@@ -89,3 +89,7 @@ Template.sp_navbar.events =
     newname = window.prompt "Enter new name"
     Meteor.call "person_rename", Session.get("selected_person"), newname, (err, stat) ->
       console.log "Return from rename_person", err, stat
+  'click .person-options .person-set-email': ->
+    email = window.prompt "Enter new email"
+    Meteor.call 'person_set_export_mail', Session.get("selected_person"), email, (err, res) ->
+      console.log "Back from person_set_export_mail, ", err, res
