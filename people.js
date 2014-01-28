@@ -68,7 +68,7 @@ if (Meteor.isClient) {
         c.B = parseInt(color.slice(4,6), 16);
         var a = 1 - (0.299 * c.R + 0.587 * c.G + 0.114 * c.B)/255;
         console.log(bg, a);
-        return a < 0.5 ? "black" : "white; font-weight: 200;";
+        return a < 0.5 ? "black" : "white; font-weight: 200; text-shadow: 0px 0px 0.5px white;";
     }
 
     Template.person_note.expanded_class = function() {
