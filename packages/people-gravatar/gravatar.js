@@ -9,7 +9,6 @@ Gravatar = (function() {
   }
 
   Gravatar.prototype.url = function(fallback) {
-      console.log("in url", fallback, this);
       if (!fallback) {
           if (this.email) {
               fallback = "retro";
