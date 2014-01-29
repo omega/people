@@ -7,33 +7,6 @@ PeopleLabels = new Meteor.Collection("peoplelabels");
 
 if (Meteor.isClient) {
 
-    Template.people.people = function() {
-        var group = Groups.findOne(Session.get("selected_group"));
-        var q;
-        if (group) {
-            q = {
-                group: group.name
-            };
-        } else {
-            q = {
-                group: { $in: [ null, undefined ] }
-            };
-        }
-        return People.find(q, {sort: {name: 1}});
-    };
-
-
-    Template.selectedperson.events = {
-        'click .cmd-enter': function() {
-            var txt = document.getElementById('new_note').value;
-            document.getElementById('new_note').value = '';
-            if (txt.match(/^\s*$/)) return;
-            var n = parseNote(txt);
-            Meteor.call('note_save', Session.get("selected_person"), null, n, function(err, stat) {
-                console.log("Back from note_save new note", err, stat);
-            });
-        }
-    };
     Template.person_action.events = {
         'click .action .complete': function() {
             Meteor.call("mark_action_as_done", this, Session.get("selected_person"), function(err, stat) {

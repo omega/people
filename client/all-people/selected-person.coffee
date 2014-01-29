@@ -4,6 +4,16 @@ Template.selectedperson.rendered = ->
 Template.selectedperson.selected_person = ->
   return People.findOne Session.get "selected_person"
 
+Template.selectedperson.events =
+  'click .cmd-enter': ->
+    txt = document.getElementById('new_note').value
+    document.getElementById('new_note').value = ''
+    return if txt.match /^\s*$/
+    n = parseNote txt
+    Meteor.call 'note_save', Session.get("selected_person"), null, n, (err, stat) ->
+      console.log "back from note_save new note", err, stat
+
+
 
 Template.person_note.events =
   'click .toolbox .email': (e) ->
