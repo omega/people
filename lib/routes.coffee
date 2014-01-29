@@ -21,5 +21,7 @@ Router.map () ->
         yieldTemplates:
           'all-people-navbar':
             to: 'navbar'
+          'all-people-footer':
+            to: 'footer'
 
 

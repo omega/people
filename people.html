@@ -28,6 +28,12 @@
             {{yield}}
         </div>
     </div>
+    {{yield 'footer'}}
+    {{> modals}}
+</body>
+</template>
+
+<template name="all-people-footer">
     <div class="navbar navbar-default navbar-fixed-bottom footer hidden-xs">
         <div class="container">
             <p class="light-keys navbar-text navbar-right">
@@ -38,8 +44,6 @@
             </p>
         </div>
     </div>
-    {{> modals}}
-</body>
 </template>
 <template name="all-people">
             <div class="col-md-3">
