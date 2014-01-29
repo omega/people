@@ -65,7 +65,7 @@ Meteor.methods
 
 # methods for actions
 Meteor.methods
-  mark_action_as_done: (actions, person) ->
+  action_mark_as_done: (actions, person) ->
     console.log "marking ", actions, "as done"
     return People.update({
       _id: person
@@ -73,7 +73,7 @@ Meteor.methods
     }, {
       '$set': {'actions.$.done': new Date()}
     })
-  action_trash: (person, action) ->
+  action_trash: (action, person) ->
     console.log "Deleting action ", action
     return People.update person, '$pull': actions: action
 

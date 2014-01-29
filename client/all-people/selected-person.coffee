@@ -13,8 +13,37 @@ Template.selectedperson.events =
     Meteor.call 'note_save', Session.get("selected_person"), null, n, (err, stat) ->
       console.log "back from note_save new note", err, stat
 
+Template.person_action.events =
+  'click .action .complete': ->
+    Meteor.call "action_mark_as_done", this, Session.get("selected_person"), (err, stat) ->
+      console.log "Back from action_mark_as_done", err, stat
+  'click .action .trash': ->
+    Meteor.call "action_trash", this, Session.get("selected_person"), (err, stat) ->
+      console.log "Back from action_trash", err, stat
 
 
+Template.person_note.tag_color = ->
+  i = 0
+  hash = 0
+  while i < this.length
+    hash = this.charCodeAt(i) + (( hash << 5) - hash)
+    i++
+  color = "#"
+  i = 0
+  while i < 3
+    v = (hash >> (i * 8)) & 0xFF
+    color += ("00" + v.toString(16)).substr -2
+    i++
+  return color
+
+Template.person_note.tag_text_color = ->
+  color = Template.person_note.tag_color.apply(this).substring(1)
+  c =
+    R: parseInt color.slice(0,2), 16
+    G: parseInt color.slice(2,4), 16
+    B: parseInt color.slice(4,6), 16
+  a = 1 - (0.299 * c.R + 0.587 * c.G + 0.114 * c.B)/255
+  return if a > 0.5 then "white; font-weight: 200; text-shadow: 0px 0px 0.5px white;"  else "black"
 Template.person_note.events =
   'click .toolbox .email': (e) ->
     e.stopPropagation()

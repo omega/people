@@ -7,43 +7,6 @@ PeopleLabels = new Meteor.Collection("peoplelabels");
 
 if (Meteor.isClient) {
 
-    Template.person_action.events = {
-        'click .action .complete': function() {
-            Meteor.call("mark_action_as_done", this, Session.get("selected_person"), function(err, stat) {
-                console.log("Back from mark: ", err, stat);
-            });
-        },
-        'click .action .trash': function() {
-            Meteor.call("action_trash", Session.get("selected_person"), this, function(err, stat) {
-                console.log("Back from trash action", err, stat);
-            });
-        }
-    };
-
-    Template.person_note.tag_color = function() {
-        for (var i = 0, hash = 0; i < this.length; i++) {
-            hash = this.charCodeAt(i) + (( hash << 5) - hash);
-        }
-        for (var i = 0, colour = '#'; i < 3; i++) {
-            var v = (hash >> (i * 8)) & 0xFF;
-
-            colour += ("00" + v.toString(16)).substr(-2);
-        }
-        return colour;
-    };
-    Template.person_note.tag_text_color = function() {
-        var color = Template.person_note.tag_color.apply(this);
-        var bg = color;
-        color = color.substring(1);           // remove #
-        var c = new Object;
-        c.R = parseInt(color.slice(0,2), 16);
-        c.G = parseInt(color.slice(2,4), 16);
-        c.B = parseInt(color.slice(4,6), 16);
-        var a = 1 - (0.299 * c.R + 0.587 * c.G + 0.114 * c.B)/255;
-        console.log(bg, a);
-        return a < 0.5 ? "black" : "white; font-weight: 200; text-shadow: 0px 0px 0.5px white;";
-    }
-
     Template.person_note.expanded_class = function() {
         var d = new Date(this.date);
         return Session.equals("i" + d.getTime(), 1) ? 'expanded' : 'collapsed';
