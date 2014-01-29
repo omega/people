@@ -44,6 +44,14 @@ Template.person_note.tag_text_color = ->
     B: parseInt color.slice(4,6), 16
   a = 1 - (0.299 * c.R + 0.587 * c.G + 0.114 * c.B)/255
   return if a > 0.5 then "white; font-weight: 200; text-shadow: 0px 0px 0.5px white;"  else "black"
+
+Template.person_note.expanded_class = ->
+   if Template.person_note.expanded.apply(this) then "expanded" else "collapsed"
+Template.person_note.expanded = ->
+  d = new Date @date
+  return Session.equals "i#{d.getTime()}", 1
+
+
 Template.person_note.events =
   'click .toolbox .email': (e) ->
     e.stopPropagation()
