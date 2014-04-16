@@ -1,12 +1,12 @@
-Handlebars.registerHelper 'formatdate', (object) -> 
+UI.registerHelper 'formatdate', (object) -> 
   date = moment new Date object
-  return new Handlebars.SafeString date.fromNow()
+  return new Spacebars.SafeString date.fromNow()
 
-Handlebars.registerHelper 'noteid', (object) ->
+UI.registerHelper 'noteid', (object) ->
   d = new Date object.date
-  return new Handlebars.SafeString d.getTime()
+  return new Spacebars.SafeString d.getTime()
 
-Handlebars.registerHelper 'gravatar', (object) ->
+UI.registerHelper 'gravatar', (object) ->
   if object?.email
     object = object.email
   g = new Gravatar object

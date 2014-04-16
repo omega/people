@@ -1,21 +1,17 @@
 Meteor.publish("people", function() {
-    if (!this.userId) {
-        console.log("Not logged in, not returning anything");
-        return;
+    if (this.userId) {
+        return People.find({owner: this.userId});
     }
-    return People.find({owner: this.userId});
 });
 Meteor.publish("groups", function() {
-    if (!this.userId) {
-        console.log("Not logged in, not returning any groups");
+    if (this.userId) {
+        return Groups.find({owner: this.userId});
     }
-    return Groups.find({owner: this.userId});
 });
 Meteor.publish("peoplelabels", function() {
-    if (!this.userId) {
-        console.log("Not logged in, not returning any groups");
+    if (this.userId) {
+        return PeopleLabels.find({owner: this.userId});
     }
-    return PeopleLabels.find({owner: this.userId});
 });
 
 

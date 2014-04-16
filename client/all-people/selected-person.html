@@ -3,34 +3,32 @@
 {{formatdate date}}
 </dt>
 <dd class="clearfix person-note {{expanded_class}}" id="i{{noteid this}}">
-<div class="btn-group pull-right toolbox">
-    <a class="btn btn-xs btn-default edit"><i class="icon-pencil"></i></a>
-    <a class="btn btn-xs btn-danger"><i class="icon-trash"></i></a>
-    <a class="btn btn-xs btn-default email"><i class="icon-envelope"></i></a>
-    {{#if expanded}}
-    <a class="btn btn-xs btn-default collapser"><i class="icon-chevron-up"></i></a>
-    {{else}}
-    <a class="btn btn-xs btn-default expand"><i class="icon-chevron-down"></i></a>
-    {{/if}}
-</div>
-<div class="form-ahead">
-{{#if tags}}
-<div class="labels">{{#each tags}}<span class="label label-info" style="background-color: {{tag_color}}; color: {{tag_text_color}}">{{this}}</span>{{/each}}</div>
-{{/if}}
-{{#markdown}}
-{{text}}
-{{/markdown}}
-</div>
-<form class="form-behind" style="display: none;">
-    <div class="form-group">
-        <textarea name="edit_note" class="form-control edit-note" rows="5">{{origText}}</textarea>
+    <div class="btn-group pull-right toolbox">
+        <a class="btn btn-xs btn-default edit"><i class="icon-pencil"></i></a>
+        <a class="btn btn-xs btn-danger"><i class="icon-trash"></i></a>
+        <a class="btn btn-xs btn-default email"><i class="icon-envelope"></i></a>
+        {{#if expanded}}
+        <a class="btn btn-xs btn-default collapser"><i class="icon-chevron-up"></i></a>
+        {{else}}
+        <a class="btn btn-xs btn-default expand"><i class="icon-chevron-down"></i></a>
+        {{/if}}
     </div>
-    <div class="form-group">
-        <a class="btn btn-primary save-note cmd-enter"><i class="icon-comment"></i> Save</a>
+    <div class="form-ahead">
+        {{#if tags}}
+        <div class="labels">{{#each tags}}<span class="label label-info" style="background-color: {{tag_color}}; color: {{tag_text_color}}">{{this}}</span>{{/each}}</div>
+        {{/if}}
+        {{#markdown}}{{text}}{{/markdown}}
     </div>
-    <div>
-    </div>
-</div>
+    <form class="form-behind" style="display: none;">
+        <div class="form-group">
+            <textarea name="edit_note" class="form-control edit-note" rows="5">{{origText}}</textarea>
+        </div>
+        <div class="form-group">
+            <a class="btn btn-primary save-note cmd-enter"><i class="icon-comment"></i> Save</a>
+        </div>
+        <div>
+        </div>
+    </form>
 </dd>
 </template>
 
@@ -126,19 +124,20 @@
                     <li><a href="#" class="none">No label</a></li>
                     <li><a href="#" class="new-label"><span class="icon-plus"></span>Add new label</a></li>
                 </ul>
-                </li>
-
-                {{#if group_count}}
-                <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    Group
-                    <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                    {{>groups}}
-                </ul>
-                {{/if}}
             </li>
+
+            {{#if group_count}}
+            <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                Group
+                <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                {{>groups}}
+            </ul>
+            </li>
+            {{/if}}
+
         </ul>
         <button type="button" class="navbar-btn navbar-right btn btn-danger remove-person" data:user="{{selected_person._id}}">
             <i class="icon-trash"></i>

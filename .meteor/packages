@@ -9,7 +9,6 @@ moment
 accounts-password
 accounts-ui-unstyled
 less
-preserve-inputs
 coffeescript
 standard-app-packages
 font-awesome

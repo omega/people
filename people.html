@@ -18,17 +18,17 @@
                 <a class="navbar-brand goto-dashboard" href="{{ pathFor 'dashboard' }}">People</a>
             </div>
             <div class="collapse navbar-collapse navbar-top-collapse">
-                {{yield 'navbar'}}
+                {{>yield region='navbar'}}
                 {{>loggedInUser}}
             </div>
         </div>
     </div>
     <div class="container">
         <div class="row">
-            {{yield}}
+            {{> yield}}
         </div>
     </div>
-    {{yield 'footer'}}
+    {{> yield region='footer'}}
     {{> modals}}
 </body>
 </template>
