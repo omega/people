@@ -62,6 +62,9 @@ Meteor.methods
     console.log "Renaming #{person} to #{newname}"
     return People.update person, $set: name: newname, key: newname.toLowerCase()
 
+  person_attachment_remove: (attachment) ->
+    console.log "removing", attachment
+    return Attachments.remove _id: attachment
 
 # methods for actions
 Meteor.methods

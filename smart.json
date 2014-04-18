@@ -6,6 +6,8 @@
     },
     "bootstrap3-less": {},
     "iron-router": {},
-    "crypto-md5": {}
+    "crypto-md5": {},
+    "collectionFS": {},
+    "ui-dropped-event": {}
   }
 }

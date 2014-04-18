@@ -31,3 +31,5 @@ cfs-ejson-file
 cfs-filesystem
 reactive-property
 micro-queue
+ui-dropped-event
+numeral

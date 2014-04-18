@@ -100,7 +100,30 @@ Template.sp_navbar.person_labels_count = ->
 Template.sp_navbar.person_labels = ->
   return PeopleLabels.find({}, sort: {name: 1})
 
+Template.sp_navbar.attachments = ->
+  return Attachments.find {}
+
 Template.sp_navbar.events =
+  'dropped .person-attachments': (e, t) ->
+    e.stopPropagation()
+    e.preventDefault()
+    console.log "We have a drop!", e, t
+    FS.Utility.eachFile e, (file) ->
+      newFile = new FS.File(file)
+
+      console.log "should store a file"
+      newFile.person = Session.get "selected_person"
+      newFile.owner = Meteor.userId()
+      Attachments.insert newFile, (err, fileObj) ->
+        console.log "Back from insert file", err, fileObj
+  'click .person-attachments': (e) ->
+    $(e.target).popover()
+  'click .attachment .remove': (e) ->
+    e.stopPropagation()
+    e.preventDefault()
+    console.log "Should remove", @_id
+    Meteor.call "person_attachment_remove", @_id, (err, stat) ->
+      console.log "return from person_attachment_remove", err, stat
   'click .remove-person': (e) ->
     id = e.target.getAttribute('data:user');
     Meteor.call 'person_remove', id, (err, stat) ->

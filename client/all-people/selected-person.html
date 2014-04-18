@@ -142,6 +142,28 @@
         <button type="button" class="navbar-btn navbar-right btn btn-danger remove-person" data:user="{{selected_person._id}}">
             <i class="icon-trash"></i>
         </button>
+
+        <div class="nav navbar-nav pull-right">
+            <div class="dropdown person-attachments">
+                <button type="button" class="navbar-btn btn dropdown-toggle" data-toggle="dropdown">
+                    <i class="icon-paper-clip"></i>
+                </button>
+                <div class="dropdown-menu">
+                    {{#if attachments}}
+                    <table class="table table-hover table-condensed">
+                        {{#each attachments}}
+                        <tr class="attachment">
+                            <td><a href="{{url}}">{{name}}</a></td>
+                            <td><button type="button" class="btn btn-danger btn-xs remove"><i class="icon-trash"></i></button></td>
+                        </tr>
+                        {{/each}}
+                    </table>
+                    {{else}}
+                    <p>No attachments</p>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
     </div>
 </nav>
 </template>

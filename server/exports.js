@@ -14,10 +14,18 @@ Meteor.publish("peoplelabels", function() {
     }
 });
 
+Meteor.publish("personattachments", function(person) {
+    if (this.userId && person) {
+        return Attachments.find({
+            owner: this.userId,
+            person: person
+        });
+    }
+});
 
 Meteor.startup(function() {
     var canModify = function(userId, objs) {
-        return _.all(objs, function(obj) {
+        return _.every(_.flatten([objs]), function(obj) {
             return obj.owner === userId;
         });
     };
@@ -30,6 +38,18 @@ Meteor.startup(function() {
     People.allow(allow);
     Groups.allow(allow);
     PeopleLabels.allow(allow);
+
+    ownsFile = function(userId, file) {
+        return userId && file.owner === userId
+    };
+    Attachments.allow({
+        insert: ownsFile,
+        update: canModify,
+        remove: canModify,
+        download: ownsFile
+    });
+
+
 });
 
 

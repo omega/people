@@ -51,8 +51,13 @@ body > .container {
 
 /* fixes */
 
-.navbar .input-append .btn {
-    margin-top: 0;
+.navbar {
+    .navbar-form {
+        width: 250px;
+    }
+    .input-append .btn {
+        margin-top: 0;
+    }
 }
 h1 .btn-toolbar {
     margin-top: 0;
@@ -194,6 +199,24 @@ h1 .btn-toolbar {
         font-size: 14px;
     }
 
+}
+
+
+.person-attachments {
+    .dropdown-menu {
+        left: auto;
+        right: -55px;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+    .table {
+        margin-bottom: 0;
+        tr:first-child td {
+            border-top: 0;
+        }
+    }
+    .attachment {
+    }
 }
 
 
