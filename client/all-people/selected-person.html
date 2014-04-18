@@ -149,18 +149,18 @@
                     <i class="icon-paper-clip"></i>
                 </button>
                 <div class="dropdown-menu">
-                    {{#if attachments}}
                     <table class="table table-hover table-condensed">
                         {{#each attachments}}
                         <tr class="attachment">
                             <td><a href="{{url}}">{{name}}</a></td>
                             <td><button type="button" class="btn btn-danger btn-xs remove"><i class="icon-trash"></i></button></td>
                         </tr>
+                        {{else}}
+                        <tr>
+                            <td>No attachments</td>
+                        </tr>
                         {{/each}}
                     </table>
-                    {{else}}
-                    <p>No attachments</p>
-                    {{/if}}
                 </div>
             </div>
         </div>
