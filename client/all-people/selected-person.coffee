@@ -57,7 +57,7 @@ Template.person_note.events =
     e.stopPropagation()
     p = People.findOne Session.get "selected_person"
     email = window.prompt "Email address", p.email or "a@b.c"
-    if email
+    if email != null
       # Add the email to the user, so we can reuse it later
       Meteor.call 'person_set_export_mail', Session.get("selected_person"), email, (err, res) ->
         console.log "Back from person_set_export_mail, ", err, res
@@ -159,7 +159,10 @@ Template.sp_navbar.events =
     newname = window.prompt "Enter new name"
     Meteor.call "person_rename", Session.get("selected_person"), newname, (err, stat) ->
       console.log "Return from rename_person", err, stat
+
   'click .person-options .person-set-email': ->
-    email = window.prompt "Enter new email"
-    Meteor.call 'person_set_export_mail', Session.get("selected_person"), email, (err, res) ->
+    p = People.findOne Session.get "selected_person"
+    email = window.prompt "Enter new email", p.email or "a@b.c"
+    if email != null
+      Meteor.call 'person_set_export_mail', Session.get("selected_person"), email, (err, res) ->
       console.log "Back from person_set_export_mail, ", err, res
