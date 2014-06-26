@@ -1,10 +1,10 @@
 <template name="all-people">
-            <div class="col-md-3">
-                <ul class="nav nav-pills nav-stacked people hidden-xs hidden-sm">
+            <div class="col-md-2 sidebar">
+                <ul class="nav nav-sidebar people hidden-xs hidden-sm">
                     {{> people}}
                 </ul>
             </div>
-            <div class="col-md-9">
+            <div class="col-md-10 col-md-offset-2">
                 {{>selectedperson}}
             </div>
 
@@ -20,19 +20,18 @@
 
 
 <template name="person">
-<li class="person {{selected_class}} {{#if email}}email{{/if}}">
+<li class="person {{selected_class}} {{#if email}}email{{/if}} {{#if note_count}}tasks{{/if}}">
 <a href="#">
-    <i class="icon-chevron-right pull-right"></i>
     {{#if email}}
     <img src="{{ gravatar email }}" class="gravatar">
-    {{/if}}
-    {{#if note_count}}
-    <span class="badge outside">{{note_count}}</span>
     {{/if}}
     {{#if label}}
     <span class="label label-default pull-right">{{label}}</span>
     {{/if}}
     <span class="name">{{name}}</span>
+    {{#if note_count}}
+    <span class="task_count">{{note_count}}<small>{{pluralize_word note_count "task"}}</small></span>
+    {{/if}}
 </a>
 </li>
 </template>

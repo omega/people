@@ -66,6 +66,7 @@ h1 .btn-toolbar {
 /*  custom styles */
 // make sure the user dropdown is always at the right end of the menu
 .top-menu.navbar {
+    padding-right: 35px;
     .container {
         position: relative;
         padding-right: 45px;
@@ -79,36 +80,66 @@ h1 .btn-toolbar {
 
 
 .people {
-    li {
-        .icon-chevron-right {
-            margin-top: 4px;
-            margin-right: -6px;
-        }
-    }
-
     .person {
         position: relative;
-
-        &.email .gravatar {
-            height: 40px;
+        padding: 2px;
+        a {
+            &:focus, &:hover {
+                background-color: transparent;
+            }
+        }
+        .label {
             position: absolute;
-            top: 0;
-            left: 0;
-            border-radius: inherit;
+            top: 12px;
+            right: 5px;
+        }
 
+        &.tasks {
+            a {
+                padding-top: 1px;
+                padding-bottom: 0;
+                min-height: 40px;
+            }
+            .task_count {
+                position: absolute;
+                left: 15px;
+                bottom: 2px;
+                font-size: 0.9em;
+                small {
+                    font-weight: lighter;
+                    padding-left: 1px;
+                }
+            }
+
+            .label {
+            }
         }
-        &.email .name {
-            margin-left: 32px;
+
+        &.active {
+            background-color: @component-active-bg;
+            color: @component-active-color;
+            a {
+                color: inherit;
+            }
         }
-        .outside {
-            position: absolute;
-            left: -18px;
-            top: 12px
-        }
-        &.active .outside {
-            border-color: rgb(66, 139, 202);
-            border: 2px solid;
-            padding: 1px 5px;
+        &.email {
+            a {
+                padding-left: 0;
+                padding-right: 0;
+            }
+            .gravatar {
+                height: 40px;
+                position: absolute;
+                top: 0;
+                left: 0;
+                border-radius: inherit;
+            }
+            .name {
+                margin-left: 45px;
+            }
+            .task_count {
+                left: 45px;
+            }
         }
     }
 }

@@ -8,6 +8,7 @@
     "iron-router": {},
     "crypto-md5": {},
     "collectionFS": {},
-    "ui-dropped-event": {}
+    "ui-dropped-event": {},
+    "inflectionizer": {}
   }
 }
