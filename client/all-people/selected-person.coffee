@@ -1,5 +1,5 @@
-Template.selectedperson.rendered = ->
-  $('#person-menu').affix({ offset: 12 })
+#Template.selectedperson.rendered = ->
+  #$('#person-menu').affix({ offset: 12 })
 
 Template.selectedperson.selected_person = ->
   return People.findOne Session.get "selected_person"
