@@ -33,4 +33,5 @@ reactive-property
 micro-queue
 ui-dropped-event
 numeral
+emitter
 inflectionizer
