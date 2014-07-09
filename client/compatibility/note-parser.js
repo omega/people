@@ -34,6 +34,16 @@ function parseNote(text) {
         console.log( tags );
         note.tags = tags;
     }
+
+    // Lets get out message:// links, if we can
+    // message://%3cTHJDBAGENT1wWGNnuRv0070cd8e@thidc70.mail.jobsdb.co.th%3e
+    var message_links_re = /\b(message:\/\/%3c.*%3e(?!\)))\b/i;
+    while (text.search(message_links_re) != -1) {
+        text = text.replace(message_links_re, function(match, p1) {
+            return "[Mail message](" + p1.trim() + ")";
+        });
+    }
+
     note.text = text.trim();
     return {note: note, actions: actions};
 };
