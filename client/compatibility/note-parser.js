@@ -14,13 +14,9 @@ function parseNote(text) {
             return "";
         });
     }
-    if (actions) {
-        console.log(actions);
-        /* We don't want the actions in the text to edit,
-         * since we add those actions as their own thing
-         */
-        note.origText = text;
-    }
+
+    note.origText = text;
+
 
     var tags = new Array();
     var tags_re = /^(?:\s*)#([\w\-]+)/i;
@@ -31,7 +27,7 @@ function parseNote(text) {
         });
     }
     if ( tags ) {
-        console.log( tags );
+        //console.log( tags );
         note.tags = tags;
     }
 
