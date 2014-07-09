@@ -83,6 +83,8 @@ Template.person_note.events =
     n = parseNote t
     return Meteor.call 'note_save', Session.get("selected_person"), this, n, (err, stat) ->
       console.log "Back from note_save", err, stat
+      $(e.target).closest('dd').find('.form-behind').toggle()
+      $(e.target).closest('dd').find('.form-ahead').toggle()
 
   'click .expand, click .person-note.collapsed': ->
     d = new Date @date;
