@@ -1,6 +1,13 @@
 #Template.selectedperson.rendered = ->
   #$('#person-menu').affix({ offset: 12 })
 
+Deps.autorun ->
+  person = Session.get "selected_person"
+  setTimeout( ->
+    $('.people').parent()[0]?.scrollTop = $('.person.active')[0]?.offsetTop
+    10
+  )
+
 Template.selectedperson.selected_person = ->
   return People.findOne Session.get "selected_person"
 
