@@ -18,8 +18,8 @@
                 <a class="navbar-brand goto-dashboard" href="{{ pathFor 'dashboard' }}">People</a>
             </div>
             <div class="collapse navbar-collapse navbar-top-collapse">
-                {{>yield region='navbar'}}
                 {{>loggedInUser}}
+                {{>yield region='navbar'}}
             </div>
         </div>
     </div>

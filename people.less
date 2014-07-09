@@ -64,20 +64,6 @@ h1 .btn-toolbar {
 }
 
 /*  custom styles */
-// make sure the user dropdown is always at the right end of the menu
-.top-menu.navbar {
-    padding-right: 35px;
-    .container {
-        position: relative;
-        padding-right: 45px;
-    }
-
-    .user {
-        position: absolute;
-        right: 15px;
-    }
-}
-
 
 .people {
     .person {
@@ -269,6 +255,11 @@ textarea {
     resize: vertical;
 }
 
+.navbar {
+    .navbar-form {
+        width: auto;
+    }
+}
 
 @media (max-width: 767px) {
     .inline-visible-xs {
@@ -291,6 +282,11 @@ textarea {
     #person-menu.affix {
         width: @container-tablet - @grid-gutter-width;
         margin: 0;
+    }
+    .navbar {
+        .navbar-form {
+            width: 250px;
+        }
     }
 }
 @media (min-width: @screen-desktop) {

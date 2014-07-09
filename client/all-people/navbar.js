@@ -44,9 +44,13 @@ Template["all-people-navbar"].events = {
         } else {
             Meteor.call("create_person", name, Session.get("selected_group"), function(err, id) {
                 console.log("Back from create_person", err, id);
-                Session.set("selected_user", id);
+                Session.set("selected_person", id);
             });
 
+        }
+        if ($('.top-menu .collapse').hasClass('in')) {
+            // The menu is open on mobile? lets close it
+            $('.top-menu .navbar-toggle').click();
         }
     },
     'keydown input': function(e) {
