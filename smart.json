@@ -8,7 +8,10 @@
     "iron-router": {},
     "crypto-md5": {},
     "collectionFS": {},
-    "ui-dropped-event": {},
+    "ui-dropped-event": {
+        "git": "https://github.com/omega/Meteor-ui-dropped-event.git",
+        "branch": "fix-closure-error"
+    },
     "inflectionizer": {}
   }
 }
