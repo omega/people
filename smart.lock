@@ -11,8 +11,8 @@
       "crypto-md5": {},
       "collectionFS": {},
       "ui-dropped-event": {
-        "git": "https://github.com/omega/Meteor-ui-dropped-event.git",
-        "branch": "fix-closure-error"
+        "git": "https://github.com/CollectionFS/Meteor-ui-dropped-event.git",
+        "branch": "master"
       },
       "inflectionizer": {}
     },
@@ -48,9 +48,9 @@
         "commit": "fea890b1e27799ccc9f71046748fb23a84330a16"
       },
       "ui-dropped-event": {
-        "git": "https://github.com/omega/Meteor-ui-dropped-event.git",
-        "branch": "fix-closure-error",
-        "commit": "ae93f5250a3bb46e5d037833c77f55df08d88d49"
+        "git": "https://github.com/CollectionFS/Meteor-ui-dropped-event.git",
+        "branch": "master",
+        "commit": "56191ca2246c1cc4e699df351c251e41f9213613"
       },
       "inflectionizer": {
         "git": "https://github.com/Differential/inflectionizer.git",

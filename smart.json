@@ -9,8 +9,8 @@
     "crypto-md5": {},
     "collectionFS": {},
     "ui-dropped-event": {
-        "git": "https://github.com/omega/Meteor-ui-dropped-event.git",
-        "branch": "fix-closure-error"
+        "git": "https://github.com/CollectionFS/Meteor-ui-dropped-event.git",
+        "branch": "master"
     },
     "inflectionizer": {}
   }
