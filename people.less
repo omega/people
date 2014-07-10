@@ -219,20 +219,23 @@ h1 .btn-toolbar {
 }
 
 
-.person-attachments {
-    .dropdown-menu {
-        left: auto;
-        right: -55px;
-        padding-top: 0;
-        padding-bottom: 0;
-    }
-    .table {
-        margin-bottom: 0;
-        tr:first-child td {
-            border-top: 0;
+.person-toolbar {
+    width: 100%;
+    .person-attachments-list {
+        border: 0;
+        padding: 0;
+        left: -10px;
+        right: -10px;
+        &.open {
+            display: block;
         }
     }
     .attachment {
+        .remove {
+            position: absolute;
+            top: 3px;
+            right: 3px;
+        }
     }
 }
 
@@ -282,6 +285,16 @@ textarea {
     #person-menu.affix {
         width: @container-tablet - @grid-gutter-width;
         margin: 0;
+    }
+    .person-toolbar {
+        width: auto;
+        .person-attachments-list {
+            left: auto;
+            right: -17px;
+            .attachment {
+                padding-right: 45px;
+            }
+        }
     }
     .navbar {
         .navbar-form {

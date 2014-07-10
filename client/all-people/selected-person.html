@@ -139,30 +139,27 @@
             {{/if}}
 
         </ul>
-        <button type="button" class="navbar-btn navbar-right btn btn-danger remove-person" data:user="{{selected_person._id}}">
-            <i class="icon-trash"></i>
-        </button>
-
-        <div class="nav navbar-nav pull-right">
-            <div class="dropdown person-attachments">
-                <button type="button" class="navbar-btn btn dropdown-toggle" data-toggle="dropdown">
+        <div class="btn-group navbar-right person-toolbar">
+            <div class="btn-group dropdown person-attachments">
+                <button type="button" class="navbar-btn btn dropdown-toggle" data-toggle="dropdown"
+                    data-target=".person-attachments-list">
                     <i class="icon-paper-clip"></i>
+                    <span class="badge">{{attachments.count}}</span>
                 </button>
-                <div class="dropdown-menu">
-                    <table class="table table-hover table-condensed">
-                        {{#each attachments}}
-                        <tr class="attachment">
-                            <td><a href="{{url}}">{{name}}</a></td>
-                            <td><button type="button" class="btn btn-danger btn-xs remove"><i class="icon-trash"></i></button></td>
-                        </tr>
-                        {{else}}
-                        <tr>
-                            <td>No attachments</td>
-                        </tr>
-                        {{/each}}
-                    </table>
-                </div>
             </div>
+                <div class="dropdown-menu list-group person-attachments-list">
+                    {{#each attachments}}
+                        <a class="list-group-item attachment" href="{{url}}" target="_new">
+                            <button type="button" class="btn btn-danger remove"><i class="icon-trash"></i></button>
+                            {{name}}
+                        </a>
+                    {{else}}
+                        <a class="list-group-item disabled">No attachments</a>
+                    {{/each}}
+                </div>
+            <button type="button" class="navbar-btn btn btn-danger remove-person" data:user="{{selected_person._id}}">
+                <i class="icon-trash"></i>
+            </button>
         </div>
     </div>
 </nav>
