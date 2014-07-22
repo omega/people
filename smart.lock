@@ -3,9 +3,7 @@
   "dependencies": {
     "basePackages": {
       "moment": {},
-      "font-awesome": {
-        "version": "3.2.1"
-      },
+      "font-awesome": {},
       "bootstrap3-less": {},
       "iron-router": {},
       "crypto-md5": {},
@@ -24,8 +22,8 @@
       },
       "font-awesome": {
         "git": "https://github.com/nate-strauser/meteor-font-awesome.git",
-        "tag": "v3.2.1",
-        "commit": "38bdfff72dfb8857b272f9a9b056045d6a015489"
+        "tag": "v4.1.0",
+        "commit": "ce6b1e92715d1938babc5d69c655c17e387f5926"
       },
       "bootstrap3-less": {
         "git": "https://github.com/simison/bootstrap3-less",

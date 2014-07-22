@@ -71,7 +71,7 @@ Template.person_note.events =
       return Meteor.call 'note_email', this, email, (err, stat) ->
         console.log "Back from note_email", err, stat
 
-  'click .toolbox .icon-trash': (e) ->
+  'click .toolbox .delete': (e) ->
     e.stopPropagation()
     return Meteor.call 'note_trash', Session.get("selected_person"), this, (err, stat) ->
       console.log "Back from note_trash", err, stat

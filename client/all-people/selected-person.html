@@ -4,13 +4,13 @@
 </dt>
 <dd class="clearfix person-note {{expanded_class}}" id="i{{noteid this}}">
     <div class="btn-group pull-right toolbox">
-        <a class="btn btn-xs btn-default edit"><i class="icon-pencil"></i></a>
-        <a class="btn btn-xs btn-danger"><i class="icon-trash"></i></a>
-        <a class="btn btn-xs btn-default email"><i class="icon-envelope"></i></a>
+        <a class="btn btn-xs btn-default edit"><i class="fa fa-pencil"></i></a>
+        <a class="btn btn-xs btn-danger delete"><i class="fa fa-trash-o"></i></a>
+        <a class="btn btn-xs btn-default email"><i class="fa fa-envelope"></i></a>
         {{#if expanded}}
-        <a class="btn btn-xs btn-default collapser"><i class="icon-chevron-up"></i></a>
+        <a class="btn btn-xs btn-default collapser"><i class="fa fa-chevron-up"></i></a>
         {{else}}
-        <a class="btn btn-xs btn-default expand"><i class="icon-chevron-down"></i></a>
+        <a class="btn btn-xs btn-default expand"><i class="fa fa-chevron-down"></i></a>
         {{/if}}
     </div>
     <div class="form-ahead">
@@ -24,7 +24,7 @@
             <textarea name="edit_note" class="form-control edit-note" rows="5">{{origText}}</textarea>
         </div>
         <div class="form-group">
-            <a class="btn btn-primary save-note cmd-enter"><i class="icon-comment"></i> Save</a>
+            <a class="btn btn-primary save-note cmd-enter"><i class="fa fa-comment"></i> Save</a>
         </div>
         <div>
         </div>
@@ -37,7 +37,7 @@
 <dt class="action pri-{{pri}}">
 {{#unless done}}
 <div class="btn-group pull-right">
-    <a class="btn btn-xs complete"><i class="icon-ok"></i></a>
+    <a class="btn btn-xs complete"><i class="fa fa-check"></i></a>
 </div>
 {{/unless}}
 </dt>
@@ -45,7 +45,7 @@
 <p>
 <span class="text">{{text}}</span>
 {{#if done}} <span class="muted">completed {{formatdate done}}</span>{{/if}}
-<a class="toolbox inline btn btn-xs trash{{#unless done}} btn-danger{{else}} btn-default{{/unless}}"><i class="icon-trash"></i></a>
+<a class="toolbox inline btn btn-xs trash{{#unless done}} btn-danger{{else}} btn-default{{/unless}}"><i class="fa fa-trash-o"></i></a>
 </p>
 </dd>
 </template>
@@ -76,7 +76,7 @@
             <textarea class="form-control" name="new_note" id="new_note" rows="5"></textarea>
         </div>
         <div class="col-lg-2">
-            <a href="#" class="btn btn-primary cmd-enter"><i class="icon-comment"></i> Add note</a>
+            <a href="#" class="btn btn-primary cmd-enter"><i class="fa fa-comment"></i> Add note</a>
         </div>
     </div>
 </form>
@@ -88,9 +88,7 @@
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-person-collapse">
             <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
+            <i class="fa fa-bars fa-lg"></i>
         </button>
         <a class="navbar-brand" href="#">
             {{selected_person.name}}
@@ -122,7 +120,7 @@
                     <li class="divider"></li>
                     {{/if}}
                     <li><a href="#" class="none">No label</a></li>
-                    <li><a href="#" class="new-label"><span class="icon-plus"></span>Add new label</a></li>
+                    <li><a href="#" class="new-label"><span class="fa fa-plus"></span>Add new label</a></li>
                 </ul>
             </li>
 
@@ -143,14 +141,14 @@
             <div class="btn-group dropdown person-attachments">
                 <button type="button" class="navbar-btn btn dropdown-toggle" data-toggle="dropdown"
                     data-target=".person-attachments-list">
-                    <i class="icon-paper-clip"></i>
+                    <i class="fa fa-paper-clip"></i>
                     <span class="badge">{{attachments.count}}</span>
                 </button>
             </div>
                 <div class="dropdown-menu list-group person-attachments-list">
                     {{#each attachments}}
                         <a class="list-group-item attachment" href="{{url}}" target="_new">
-                            <button type="button" class="btn btn-danger remove"><i class="icon-trash"></i></button>
+                            <button type="button" class="btn btn-danger remove"><i class="fa fa-trash-o"></i></button>
                             {{name}}
                         </a>
                     {{else}}
@@ -158,7 +156,7 @@
                     {{/each}}
                 </div>
             <button type="button" class="navbar-btn btn btn-danger remove-person" data:user="{{selected_person._id}}">
-                <i class="icon-trash"></i>
+                <i class="fa fa-trash-o"></i>
             </button>
         </div>
     </div>
@@ -167,6 +165,6 @@
 
 <template name="person_label">
 <li><a class="person-label {{selected_class}}" href="#">
-    {{#if selected_class}}<i class="icon-ok pull-right"></i>{{/if}}
+    {{#if selected_class}}<i class="fa fa-check pull-right"></i>{{/if}}
     {{name}}</a></li>
 </template>
