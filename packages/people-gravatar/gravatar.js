@@ -8,15 +8,18 @@ Gravatar = (function() {
     }
   }
 
-  Gravatar.prototype.url = function(fallback) {
-      if (!fallback) {
-          if (this.email) {
-              fallback = "retro";
-          } else {
-              fallback = "blank";
-          }
+  Gravatar.prototype.url = function(size) {
+      var fallback;
+      console.log(typeof(size), arguments);
+      if (typeof(size) != "number") {
+          size = 80;
       }
-      url = '//www.gravatar.com/avatar/' + this.hash + "?d=" + fallback;
+      if (this.email) {
+          fallback = "retro";
+      } else {
+          fallback = "blank";
+      }
+      url = '//www.gravatar.com/avatar/' + this.hash + "?d=" + fallback + "&s=" + size;
       return url;
   };
 
