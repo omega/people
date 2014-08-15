@@ -10,7 +10,6 @@ Gravatar = (function() {
 
   Gravatar.prototype.url = function(size) {
       var fallback;
-      console.log(typeof(size), arguments);
       if (typeof(size) != "number") {
           size = 80;
       }
