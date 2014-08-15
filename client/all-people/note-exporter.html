@@ -1,0 +1,48 @@
+<template name="noteExporter">
+<div id="noteExporter" class="modal fade note-exporter">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4>Export note</h4>
+            </div>
+            <div class="modal-body">
+                {{>noteExporterContent}}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary send-email">Email</button>
+            </div>
+        </div>
+    </div>
+</div>
+</template>
+<template name="noteExporterContent">
+<h5>Recipients</h5>
+<div class="row recipients">
+    {{#each contacts}}
+    {{>noteExporterTarget}}
+    {{/each}}
+    <div class="col-xs-4 col-sm-2 col-md-2 new-recipient">
+        <div class="thumbnail">
+            <a class="btn btn-block btn-default">
+                <i class="fa fa-plus fa-5x"></i>
+            </a>
+        </div>
+    </div>
+</div>
+
+<h5>Email content</h5>
+<pre class="email-preview">{{email_preview}}</pre>
+</template>
+
+
+<template name="noteExporterTarget">
+<div class="col-xs-4 col-sm-2 col-md-2 recipient{{selected_person}}" id="{{key}}">
+    <div class="thumbnail">
+        <img src="{{ gravatar email 220}}" alt="">
+        <div class="caption">{{name}}</div>
+    </div>
+</div>
+</template>
+

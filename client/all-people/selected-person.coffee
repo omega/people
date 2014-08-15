@@ -62,14 +62,9 @@ Template.person_note.expanded = ->
 Template.person_note.events =
   'click .toolbox .email': (e) ->
     e.stopPropagation()
-    p = People.findOne Session.get "selected_person"
-    email = window.prompt "Email address", p.email or "a@b.c"
-    if email != null
-      # Add the email to the user, so we can reuse it later
-      Meteor.call 'person_set_export_mail', Session.get("selected_person"), email, (err, res) ->
-        console.log "Back from person_set_export_mail, ", err, res
-      return Meteor.call 'note_email', this, email, (err, stat) ->
-        console.log "Back from note_email", err, stat
+    Session.set "note_exporter_note", this
+    Session.set "note_exporter_selected", [] # to reset selection when we open email popup again
+    jQuery('#noteExporter').modal()
 
   'click .toolbox .delete': (e) ->
     e.stopPropagation()

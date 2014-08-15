@@ -1,0 +1,61 @@
+@import "variables.import.less";
+.note-exporter {
+    .recipients {
+        padding: 0 11px;
+    }
+    .recipient {
+        cursor: pointer;
+    }
+
+    .recipient, .new-recipient {
+        padding: 0;
+
+        &.selected-person .thumbnail:after, &.checked-contact .thumbnail:after {
+            position: absolute;
+            display: block;
+            background-color: fadeout(@brand-primary, 50%);
+            color: contrast(fadeout(@brand-primary, 50%), white, black, 70%);
+            left: 4px;
+            top: 4px;
+            right: 4px;
+            padding: 0 5px;
+            border-top-left-radius: inherit;
+            border-top-right-radius: inherit;
+            text-transform: uppercase;
+            font-size: 0.7em;
+            text-align: center;
+        }
+        &.selected-person .thumbnail:after {
+            content: 'person';
+        }
+        &.checked-contact .thumbnail:after {
+            content: "checked";
+        }
+        &.checked-contact.selected-person .thumbnail:after {
+            content: 'person/checked';
+            font-size: 0.6em;
+        }
+        &.no-email .thumbnail img {
+            background: @brand-warning;
+        }
+
+        .thumbnail {
+            position: relative;
+            border: 0;
+            margin-bottom: 10px;
+            img {
+                border-radius: 4px;
+                min-height: 40px;
+            }
+            .caption {
+                position: absolute;
+                bottom: 0;
+                padding: 5px;
+                padding-top: 0;
+                background: rgba(255,255,255,0.5);
+                width: 100%;
+                font-size: 0.8em;
+            }
+        }
+    }
+}

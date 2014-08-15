@@ -111,23 +111,35 @@ Meteor.methods
         q.$set = 'notes.$': note
       else
         q.$push = notes: note
+
     if parsed_note.actions
       q.$pushAll = actions: parsed_note.actions
     if q
-      People.update s, q
+      People.update s, q, (err) ->
+        console.log "In CB after update"
+        upd = $push:
+            notes:
+              '$each': []
+              '$sort': date: 1
+        console.log upd
+        People.update {_id: person}, upd
 
   note_trash: (person, note) ->
     console.log "deleting note on #{person}", note
     return People.update person, '$pull': notes: note
 
-  note_email: (note, email) ->
-    return console.log "From email not set.." unless Meteor.settings.from_mail
+  note_email: (note, contacts) ->
+    return console.log "From email not set.." unless Meteor.user()?.emails?[0]?.address or Meteor.settings.from_mail
+    q = _id: $in: contacts
+    contacts = People.find q
+    emails = contacts.map (contact) ->
+      return contact.email
     lines = note.text.split /\n\n/
     subj = lines[0]
     body = lines[1..-1].join "\n\n"
     Email.send
       from: Meteor.user()?.emails?[0]?.address or Meteor.settings.from_mail
-      to: email
+      to: emails
       subject: "Note from People: #{subj} (#{note.tags.join ', '})"
       text: note.text
 
