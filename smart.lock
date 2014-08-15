@@ -12,7 +12,8 @@
         "git": "https://github.com/CollectionFS/Meteor-ui-dropped-event.git",
         "branch": "master"
       },
-      "inflectionizer": {}
+      "inflectionizer": {},
+      "typeahead": {}
     },
     "packages": {
       "moment": {
@@ -54,6 +55,11 @@
         "git": "https://github.com/Differential/inflectionizer.git",
         "tag": "v0.2.0",
         "commit": "03d91efe8eb9461e5752d66de560e6c9db9bcce0"
+      },
+      "typeahead": {
+        "git": "https://github.com/sergeyt/meteor-typeahead.git",
+        "tag": "v0.0.10",
+        "commit": "fe0bb03aea8493037de134d815f9663feb21a944"
       },
       "blaze-layout": {
         "git": "https://github.com/EventedMind/blaze-layout.git",

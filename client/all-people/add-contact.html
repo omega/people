@@ -1,0 +1,26 @@
+<template name="add_contact">
+<div id="add-contact" class="modal fade add-contact">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4>Add contact</h4>
+            </div>
+            <div class="modal-body">
+                {{>add_contact_content}}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary save">Email</button>
+            </div>
+        </div>
+    </div>
+</div>
+</template>
+<template name="add_contact_content">
+<h5>Add existing person</h5>
+<div class="form-group typeahead-container">
+    <input class="form-control typeahead" name="new-contact" type="text" placeholder="Existing people" autocomplete="off" spellcheck="off" data-source="people" data-selected="selected_contact" data-value-key="name"/>
+</div>
+</template>
+

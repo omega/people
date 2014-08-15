@@ -22,3 +22,4 @@ collectionFS
 cfs-gridfs
 ui-dropped-event
 inflectionizer
+typeahead

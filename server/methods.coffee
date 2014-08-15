@@ -66,6 +66,14 @@ Meteor.methods
     console.log "removing", attachment
     return Attachments.remove _id: attachment
 
+  person_add_contact: (person, key) ->
+    console.log "in person_add_contact"
+
+    contact = People.findOne key: key
+
+    return People.update person, $addToSet: contacts: contact._id
+
+
 # methods for actions
 Meteor.methods
   action_mark_as_done: (actions, person) ->
