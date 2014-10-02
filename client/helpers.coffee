@@ -9,5 +9,11 @@ UI.registerHelper 'noteid', (object) ->
 UI.registerHelper 'gravatar', (object, size) ->
   if object?.email
     object = object.email
-  g = new Gravatar object
-  return g.url(size)
+
+  if typeof size == "object"
+    size = 80
+  fallback = "blank"
+  if object
+    fallback = "retro"
+
+  return Gravatar.imageUrl object, { size: size, d: fallback }

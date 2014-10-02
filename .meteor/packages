@@ -3,23 +3,23 @@
 # 'meteor add' and 'meteor remove' will edit this file for you,
 # but you can also edit it by hand.
 
+meteor-platform
+insecure
+accounts-password
+cfs:filesystem
+cfs:standard-packages
+cfs:gridfs
+coffeescript
+less
+email
+autoupdate
 jquery
 showdown
-moment
-accounts-password
-accounts-ui-unstyled
-less
-coffeescript
-standard-app-packages
-font-awesome
-email
-bootstrap3-less
-autoupdate
-iron-router
-crypto-md5
-people-gravatar
-collectionFS
-cfs-gridfs
-ui-dropped-event
-inflectionizer
-typeahead
+mrt:moment
+natestrauser:font-awesome
+simison:bootstrap3-less
+iron:router
+joshowens:inflectionizer
+jparker:gravatar
+raix:ui-dropped-event
+
