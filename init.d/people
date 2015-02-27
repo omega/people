@@ -80,6 +80,12 @@ fi
 [ -r /etc/default/$INIT_SCRIPT_NAME ] && . /etc/default/$INIT_SCRIPT_NAME
 [ -r $APPLICATION_DIRECTORY/init.d/${INIT_SCRIPT_NAME}.conf ] && . ${APPLICATION_DIRECTORY}/init.d/${INIT_SCRIPT_NAME}.conf
 
+PRE=""
+POST=""
+if [ -n $APPLICATION_USER ]; then
+    PRE="su -l $APPLICATION_USER -c /bin/sh -- "
+    POST="'"
+fi
 INIT_SCRIPT_NAME_NOEXT=${INIT_SCRIPT_NAME%.*}
 PIDFILE="$LOCAL_VAR_RUN/$INIT_SCRIPT_NAME_NOEXT.pid"
 SCRIPTNAME=/etc/init.d/$INIT_SCRIPT_NAME
@@ -110,9 +116,9 @@ start() {
     # We're only using it as a marker for whether or not the process is
     # running.
     rm -f $LOGFILE
-    forever --pidFile $PIDFILE --sourceDir $APPLICATION_DIRECTORY \
+    $PRE forever --pidFile $PIDFILE --sourceDir $APPLICATION_DIRECTORY \
         -l $LOGFILE --minUptime 5000 --spinSleepTime 2000 \
-        start $APPLICATION_LAUNCHER $APPLICATION_START &
+        start $APPLICATION_LAUNCHER $APPLICATION_START $POST &
     RETVAL=$?
 }
  
