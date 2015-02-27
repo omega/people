@@ -6,6 +6,8 @@ check_login = (pause) ->
   unless Meteor.user()
     this.render 'welcome'
     pause()
+  else
+    this.next()
 Router.onBeforeAction(check_login, {except: ['welcome']})
 Router.map () ->
     this.route 'dashboard',
