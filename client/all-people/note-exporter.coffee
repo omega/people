@@ -1,29 +1,29 @@
-Template.noteExporterTarget.selected_person = ->
-  cls = ""
-  cls += " selected-person" if Session.equals "selected_person", @_id
-  cls += " checked-contact" if (Session.get("note_exporter_selected") or []).indexOf(@_id) != -1
-  cls += " no-email" unless @email
-  return cls
+Template.noteExporterTarget.helpers
+  selected_person: ->
+    cls = ""
+    cls += " selected-person" if Session.equals "selected_person", @_id
+    cls += " checked-contact" if (Session.get("note_exporter_selected") or []).indexOf(@_id) != -1
+    cls += " no-email" unless @email
+    return cls
 
-Template.noteExporterContent.email_preview = ->
-  return Session.get("note_exporter_note")?.text
+  email_preview: ->
+    return Session.get("note_exporter_note")?.text
 
-Template.noteExporterContent.contacts = ->
+  contacts: ->
+    p = People.findOne Session.get "selected_person"
 
-  p = People.findOne Session.get "selected_person"
+    # Now need to get the contacts and load the details?
+    return [] unless p
 
-  # Now need to get the contacts and load the details?
-  return [] unless p
+    # We want ourselves in the list as well
+    conts = p.contacts or []
+    conts.unshift p._id
 
-  # We want ourselves in the list as well
-  conts = p.contacts or []
-  conts.unshift p._id
+    q = _id: $in: conts
+    contacts = People.find q
 
-  q = _id: $in: conts
-  contacts = People.find q
-
-  console.log contacts
-  return contacts
+    console.log contacts
+    return contacts
 
 
 Template.noteExporter.events =

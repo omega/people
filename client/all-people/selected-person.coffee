@@ -8,8 +8,9 @@ Deps.autorun ->
     10
   )
 
-Template.selectedperson.selected_person = ->
-  return People.findOne Session.get "selected_person"
+Template.selectedperson.helpers
+  selected_person: ->
+    return People.findOne Session.get "selected_person"
 
 Template.selectedperson.events =
   'click .cmd-enter': ->
@@ -29,34 +30,35 @@ Template.person_action.events =
       console.log "Back from action_trash", err, stat
 
 
-Template.person_note.tag_color = ->
-  i = 0
-  hash = 0
-  while i < this.length
-    hash = this.charCodeAt(i) + (( hash << 5) - hash)
-    i++
-  color = "#"
-  i = 0
-  while i < 3
-    v = (hash >> (i * 8)) & 0xFF
-    color += ("00" + v.toString(16)).substr -2
-    i++
-  return color
+Template.person_note.helpers
+  tag_color: ->
+    i = 0
+    hash = 0
+    while i < this.length
+      hash = this.charCodeAt(i) + (( hash << 5) - hash)
+      i++
+    color = "#"
+    i = 0
+    while i < 3
+      v = (hash >> (i * 8)) & 0xFF
+      color += ("00" + v.toString(16)).substr -2
+      i++
+    return color
 
-Template.person_note.tag_text_color = ->
-  color = Template.person_note.tag_color.apply(this).substring(1)
-  c =
-    R: parseInt color.slice(0,2), 16
-    G: parseInt color.slice(2,4), 16
-    B: parseInt color.slice(4,6), 16
-  a = 1 - (0.299 * c.R + 0.587 * c.G + 0.114 * c.B)/255
-  return if a > 0.5 then "white; font-weight: 200; text-shadow: 0px 0px 0.5px white;"  else "black"
+  tag_text_color: ->
+    color = Template.person_note.__helpers.get("tag_color").apply(this).substring(1)
+    c =
+      R: parseInt color.slice(0,2), 16
+      G: parseInt color.slice(2,4), 16
+      B: parseInt color.slice(4,6), 16
+    a = 1 - (0.299 * c.R + 0.587 * c.G + 0.114 * c.B)/255
+    return if a > 0.5 then "white; font-weight: 200; text-shadow: 0px 0px 0.5px white;"  else "black"
 
-Template.person_note.expanded_class = ->
-   if Template.person_note.expanded.apply(this) then "expanded" else "collapsed"
-Template.person_note.expanded = ->
-  d = new Date @date
-  return Session.equals "i#{d.getTime()}", 1
+  expanded_class: ->
+    if Template.person_note.__helpers.get("expanded").apply(this) then "expanded" else "collapsed"
+  expanded: ->
+    d = new Date @date
+    return Session.equals "i#{d.getTime()}", 1
 
 
 Template.person_note.events =
@@ -97,15 +99,16 @@ Template.person_note.events =
     return Session.set "i" + d.getTime(), 0
 
 
-Template.sp_navbar.selected_person = Template.selectedperson.selected_person
-Template.sp_navbar.group_count = Template["all-people-navbar"].group_count
-Template.sp_navbar.person_labels_count = ->
-  return PeopleLabels.find().count()
-Template.sp_navbar.person_labels = ->
-  return PeopleLabels.find({}, sort: {name: 1})
+Template.sp_navbar.helpers
+  selected_person: Template.selectedperson.__helpers.get("selected_person")
+  group_count: Template["all-people-navbar"].__helpers.get("group_count")
+  person_labels_count: ->
+    return PeopleLabels.find().count()
+  person_labels: ->
+    return PeopleLabels.find({}, sort: {name: 1})
 
-Template.sp_navbar.attachments = ->
-  return Attachments.find {}
+  attachments: ->
+    return Attachments.find {}
 
 Template.sp_navbar.events =
   'dropped .person-attachments': (e, t) ->

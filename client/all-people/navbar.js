@@ -1,11 +1,13 @@
-Template["all-people-navbar"].group_count = function() {
-    return Groups.find().count();
-};
-Template["all-people-navbar"].selected_group = function() {
-    var group = Groups.findOne(Session.get("selected_group"));
-    if (group) return group.name;
-    return;
-};
+Template["all-people-navbar"].helpers({
+    "group_count": function() {
+        return Groups.find().count();
+    },
+    "selected_group": function() {
+        var group = Groups.findOne(Session.get("selected_group"));
+        if (group) return group.name;
+        return;
+    }
+});
 Template["all-people-navbar"].events = {
     'click #addglobaltask': function() {
         /*
