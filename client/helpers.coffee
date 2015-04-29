@@ -10,6 +10,9 @@ UI.registerHelper 'gravatar', (object, size) ->
   if object?.email
     object = object.email
 
+  unless object
+    return ''
+
   if typeof size == "object"
     size = 80
   fallback = "blank"
